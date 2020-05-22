@@ -11,6 +11,14 @@
 |
 */
 
+//konfigurasi autentikasi
+Auth::routes(['register' => false, 'verify' => false]);
+
+//dashboard
+Route::get('/home', 'HomeController@index')->name('home');
+
+//botman
+
 Route::get('/', function () {
     return view('welcome');
 });
