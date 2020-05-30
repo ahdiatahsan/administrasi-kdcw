@@ -1,0 +1,27 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Databarang extends Model
+{
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'nama', 
+        'kondisi', 
+        'jumlah', 
+        'stok', 
+        'foto',
+        'created_by'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'created_by');
+    }
+}

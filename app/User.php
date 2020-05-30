@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -16,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'nama', 'email', 'password', 'jabatan', 'email', 'kontak', 'noreg', 'status_surat', 'foto'
     ];
 
     /**
@@ -27,4 +26,36 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    # Has relationship
+    public function jabatan()
+    {
+        return $this->belongsTo('App\Jabatan', 'jabatan');
+    }
+
+    public function persuratan()
+    {
+        return $this->hasMany('App\Persuratan', 'created_by');
+    }
+
+    public function databarang()
+    {
+        return $this->hasMany('App\Databarang', 'created_by');
+    }
+
+    public function peminjaman()
+    {
+        return $this->hasMany('App\Peminjaman', 'created_by');
+    }
+
+    public function keuangan()
+    {
+        return $this->hasMany('App\Keuangan', 'created_by');
+    }
+
+    public function relasi()
+    {
+        return $this->hasMany('App\Relasi', 'created_by');
+    }
+    
 }
