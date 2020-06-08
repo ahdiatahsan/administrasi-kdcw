@@ -17,6 +17,11 @@ Auth::routes(['register' => false, 'verify' => false]);
 //dashboard
 Route::get('/home', 'HomeController@index')->name('home');
 
+//profil
+Route::get('/profil', 'ProfilController@ViewProfil')->name('profil');
+Route::get('/profil_pass', 'ProfilController@ViewPassword')->name('profil_pass');
+
+
 //botman
 
 Route::get('/', function () {

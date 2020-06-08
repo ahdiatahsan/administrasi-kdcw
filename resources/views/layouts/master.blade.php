@@ -70,7 +70,7 @@
 					<div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
 						<div id="kt_aside_menu" class="kt-aside-menu  kt-aside-menu--dropdown " data-ktmenu-vertical="1" data-ktmenu-dropdown="1" data-ktmenu-scroll="0">
 							<ul class="kt-menu__nav ">
-								<li class="kt-menu__item  kt-menu__item--submenu @if(request()->routeIs('home')) {{ 'kt-menu__item--open kt-menu__item--here' }} @endif"><a href="javascript:;" class="kt-menu__link"><i class="kt-menu__link-icon fa fa-home"></i><span class="kt-menu__link-text">Dashboard</span></a>
+								<li class="kt-menu__item  kt-menu__item--submenu @if(request()->routeIs('home')) {{ 'kt-menu__item--open kt-menu__item--here' }} @endif"><a href="{{ route('home') }}" class="kt-menu__link"><i class="kt-menu__link-icon fa fa-home"></i><span class="kt-menu__link-text">Dashboard</span></a>
 								</li>
 								<li class="kt-menu__item  kt-menu__item--submenu @if(request()->routeIs('administrasi*')) {{ 'kt-menu__item--open kt-menu__item--here' }} @endif" aria-haspopup="true" data-ktmenu-submenu-toggle="click"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon fa fa-file-alt"></i><span class="kt-menu__link-text">Administrasi</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
 									<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
@@ -102,7 +102,7 @@
                                 </li>
                                 <li class="kt-menu__item  kt-menu__item--submenu @if(request()->routeIs('relasi*')) {{ 'kt-menu__item--open kt-menu__item--here' }} @endif"><a href="javascript:;" class="kt-menu__link"><i class="kt-menu__link-icon fa fa-code-branch"></i><span class="kt-menu__link-text">Relasi</span></a>
                                 </li>
-                                <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--bottom-1 @if(request()->routeIs('relasi*')) {{ 'kt-menu__item--open kt-menu__item--here' }} @endif"><a href="javascript:;" class="kt-menu__link"><i class="kt-menu__link-icon fa fa-user-cog"></i><span class="kt-menu__link-text">Profil</span></a>
+							<li class="kt-menu__item kt-menu__item--submenu kt-menu__item--bottom-1 @if(request()->routeIs('profil*')) {{ 'kt-menu__item--open kt-menu__item--here' }} @endif"><a href="{{ route('profil') }}" class="kt-menu__link"><i class="kt-menu__link-icon fa fa-user-cog"></i><span class="kt-menu__link-text">Profil</span></a>
                                 </li>
 							</ul>
 						</div>
