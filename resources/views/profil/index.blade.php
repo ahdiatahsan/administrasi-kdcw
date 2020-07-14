@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Profil')
 
 @section('subheader-main')
 
@@ -68,7 +68,7 @@
                     <div class="kt-widget__body">
                         <div class="kt-widget__content"> </div>
                         <div class="kt-widget__items">
-                            <a href="{{ route('profil') }}"
+                            <a href="{{ route('profil.index') }}"
                                 class="kt-widget__item kt-widget__item--active">
                                 <span class="kt-widget__section">
                                     <span class="kt-widget__icon">
@@ -135,7 +135,7 @@
                 <div class="kt-portlet">
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
-                            <h3 class="kt-portlet__head-title">Informasi Pribadi Anda <small>hubungi sekum untuk memperbarui</small></h3>
+                            <h3 class="kt-portlet__head-title">Informasi Pribadi Anda <small>-</small></h3>
                         </div>
                     </div>
                     <form class="kt-form kt-form--label-right">
@@ -149,11 +149,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">No. Registrasi</label>
+                                        <label class="col-xl-3 col-lg-3 col-form-label">No. Registrasi Anggota</label>
                                         <div class="col-lg-9 col-xl-6">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Username"
-                                                    value="123.KD.XVII.19">
+                                                <input type="text" class="form-control" placeholder="No. Registrasi Anggota"
+                                                    value="123.KD.XVII.19" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -164,7 +164,7 @@
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                                             class="la la-phone"></i></span></div>
                                                 <input type="text" class="form-control" value="+35278953712"
-                                                    placeholder="Phone" aria-describedby="basic-addon1">
+                                                    placeholder="Phone" aria-describedby="basic-addon1" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -175,7 +175,7 @@
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                                             class="la la-at"></i></span></div>
                                                 <input type="text" class="form-control" value="test@kedai.or.id"
-                                                    placeholder="Email" aria-describedby="basic-addon1">
+                                                    placeholder="Email" aria-describedby="basic-addon1" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -184,7 +184,7 @@
                                         <div class="col-lg-9 col-xl-6">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" placeholder="Username"
-                                                    value="TEST">
+                                                    value="-" disabled>
                                             </div>
                                         </div>
                                     </div>

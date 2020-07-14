@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 
 class ProfilController extends Controller
 {
-    public function ViewProfil()
+    public function index()
     {
-        return view('profil.profil');
+        return view('profil.index');
     }
 
-    public function ViewPassword()
+    public function password()
     {
         return view('profil.password');
     }

@@ -20,6 +20,11 @@ class Databarang extends Model
         'created_by'
     ];
 
+    public function peminjaman()
+    {
+        return $this->hasMany('App\Peminjaman', 'kode_barang');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User', 'created_by');

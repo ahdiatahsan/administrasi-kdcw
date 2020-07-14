@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Profil')
 
 @section('subheader-main')
 
@@ -68,7 +68,7 @@
                     <div class="kt-widget__body">
                         <div class="kt-widget__content"> </div>
                         <div class="kt-widget__items">
-                            <a href="{{ route('profil') }}"
+                            <a href="{{ route('profil.index') }}"
                                 class="kt-widget__item ">
                                 <span class="kt-widget__section">
                                     <span class="kt-widget__icon">

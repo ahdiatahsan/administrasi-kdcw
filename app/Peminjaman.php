@@ -20,6 +20,11 @@ class Peminjaman extends Model
         'accepted_by'
     ];
 
+    public function databarang()
+    {
+        return $this->belongsTo('App\Databarang', 'kode_barang');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User', 'created_by');

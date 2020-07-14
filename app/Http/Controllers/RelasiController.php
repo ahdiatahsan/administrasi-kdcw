@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Relasi;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Yajra\DataTables\DataTables;
 
 class RelasiController extends Controller
 {
@@ -12,9 +16,20 @@ class RelasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $relasis = Relasi::with('user')->get();
+
+            return DataTables::of($relasis)
+                ->addColumn('action', function ($relasi) {
+                    return view('relasi.index_action', compact('relasi'))->render();
+                })
+                ->addIndexColumn()
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('relasi.index');
     }
 
     /**
@@ -24,7 +39,7 @@ class RelasiController extends Controller
      */
     public function create()
     {
-        //
+        return view('relasi.create');
     }
 
     /**
@@ -35,7 +50,31 @@ class RelasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'kontak' => 'required|max:255',
+            'alamat' => 'required|max:255',
+            'keterangan' => 'required|max:255',
+            'photo' => 'required|file|max:500|mimes:jpeg,jpg,png,webp'
+        ]);
+
+        $photoFile = $request->file('photo');
+        $photoName = Str::slug($request['nama']) . '.' . $photoFile->getClientOriginalExtension();
+
+        Relasi::create([
+            'nama' => $request['nama'],
+            'email' => $request['email'],
+            'kontak' => $request['kontak'],
+            'alamat' => $request['alamat'],
+            'keterangan' => $request['keterangan'],
+            'created_by' => '1',
+            'logo' => $photoName
+        ]);
+
+        Storage::putFileAs('public/relasi', $photoFile, $photoName);
+
+        return redirect()->route('relasi.index')->with('success', 'Data relasi dengan ' . $request['nama'] . ' telah ditambah.');
     }
 
     /**
@@ -46,7 +85,7 @@ class RelasiController extends Controller
      */
     public function show(Relasi $relasi)
     {
-        //
+        return view('relasi.show', compact('relasi'));
     }
 
     /**
@@ -57,7 +96,7 @@ class RelasiController extends Controller
      */
     public function edit(Relasi $relasi)
     {
-        //
+        return view('relasi.edit', compact('relasi'));
     }
 
     /**
@@ -69,7 +108,41 @@ class RelasiController extends Controller
      */
     public function update(Request $request, Relasi $relasi)
     {
-        //
+        $request->validate([
+            'nama' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'kontak' => 'required|max:255',
+            'alamat' => 'required|max:255',
+            'keterangan' => 'required|max:255'
+        ]);
+
+        if ($request->file('photo') != null) {
+            $request->validate([
+                'photo' => 'required|file|max:2000|mimes:jpeg,jpg,png,webp'
+            ]);
+
+            if (Storage::exists('public/relasi/' . $relasi->logo)) {
+                Storage::delete('public/relasi/' . $relasi->logo);
+            }
+
+            $photoFile = $request->file('photo');
+            $photoName = Str::slug($request['nama']) . '.' . $photoFile->getClientOriginalExtension();
+
+            $relasi->logo = $photoName;
+        }
+
+        $relasi->nama = $request['nama'];
+        $relasi->email = $request['email'];
+        $relasi->kontak = $request['kontak'];
+        $relasi->alamat = $request['alamat'];
+        $relasi->keterangan = $request['keterangan'];
+        $relasi->save();
+
+        if ($request->file('photo') != null) {
+            Storage::putFileAs('public/relasi', $photoFile, $photoName);
+        }
+
+        return redirect()->route('relasi.index')->with('success', 'Data relasi dengan ' . $request['old_nama'] . ' telah diubah menjadi ' . $request['nama'] . '.');
     }
 
     /**
@@ -80,6 +153,12 @@ class RelasiController extends Controller
      */
     public function destroy(Relasi $relasi)
     {
-        //
+        $relasi->delete();
+
+        if (Storage::exists('public/relasi/' . $relasi->logo)) {
+            Storage::delete('public/relasi/' . $relasi->logo);
+        }
+
+        return redirect()->route('relasi.index')->with('success', 'Data relasi dengan ' . $relasi->nama . ' telah dihapus.');
     }
 }

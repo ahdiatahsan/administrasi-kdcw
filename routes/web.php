@@ -15,15 +15,19 @@
 Auth::routes(['register' => false, 'verify' => false]);
 
 //dashboard
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('home');
+
+//relasi
+Route::resource('relasi', 'RelasiController');
+
+//keuangan
+Route::resource('keuangan', 'KeuanganController');
 
 //profil
-Route::get('/profil', 'ProfilController@ViewProfil')->name('profil');
-Route::get('/profil_pass', 'ProfilController@ViewPassword')->name('profil_pass');
-
+Route::get('/profil/password', 'ProfilController@password')->name('profil_pass');
+Route::resource('profil', 'ProfilController');
 
 //botman
-
 Route::get('/', function () {
     return view('welcome');
 });
