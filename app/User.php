@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nama', 'email', 'password', 'jabatan', 'email', 'kontak', 'noreg', 'status_surat', 'foto'
+        'nama', 'email', 'password', 'jabatan', 'email', 'kontak', 'alamat', 'noreg', 'status_surat', 'foto'
     ];
 
     /**
@@ -28,7 +28,7 @@ class User extends Authenticatable
     ];
 
     # Has relationship
-    public function jabatan()
+    public function jabatans()
     {
         return $this->belongsTo('App\Jabatan', 'jabatan');
     }

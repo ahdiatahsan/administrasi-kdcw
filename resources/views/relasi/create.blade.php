@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label>Alamat<span class="text-danger">*</span></label>
                         <textarea class="form-control @error('alamat') is-invalid @enderror" name="alamat" id="alamat"
-                            rows="2" placeholder="Alamat" required>{{ old('alamat') }}</textarea>
+                            rows="2" placeholder="BTP Blok.M No.541" required>{{ old('alamat') }}</textarea>
                     </div>
 
                     <div class="form-group">
@@ -53,9 +53,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Nomor Telepon <span class="text-danger">*</span></label>
+                        <label>Kontak <span class="text-danger">*</span></label>
                         <input class="form-control @error('kontak') is-invalid @enderror" type="tel" name="kontak"
-                            id="kontak" placeholder="+62 89101112131" value="{{ old('kontak') }}" required>
+                            id="kontak" placeholder="+62 00011112222" value="{{ old('kontak') }}" required>
                     </div>
 
                     <div class="form-group">

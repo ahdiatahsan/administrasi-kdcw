@@ -17,6 +17,7 @@ Auth::routes(['register' => false, 'verify' => false]);
 //adminstrasi
 Route::prefix('admininstrasi')->group(function () {
     Route::resource('jabatan', 'JabatanController'); //jabatan
+    Route::resource('anggota', 'UserController', ['parameters' => ['anggota' => 'user']]); //anggota-users
 });
 
 //dashboard

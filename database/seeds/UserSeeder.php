@@ -17,12 +17,13 @@ class UserSeeder extends Seeder
                 [
                 'nama' => 'Sekretaris Umum',
                 'email' => 'sekum@kedai.or.id', 
-                'password' => bcrypt('123123'), 
+                'password' => bcrypt('12341234'), 
                 'jabatan' => 8,
                 'kontak' => 'Kosong',
-                'noreg' => '001.KD.XVII.19',
-                'status_surat' => null,
-                'foto' => null, 
+                'alamat' => 'BTP Blok.M No.541',
+                'noreg' => '001.KD.XVIII.19',
+                'status_surat' => 'Kosong',
+                'foto' => 'image.png', 
                 'created_at' => now(), 
                 'updated_at' => now()
                 ],

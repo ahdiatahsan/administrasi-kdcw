@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Jabatan')
+@section('title', 'Anggota')
 
 @section('vendor-css')
 <link href="{{ asset("metronic/assets/plugins/custom/datatables/datatables.bundle.css") }}" rel="stylesheet"
@@ -10,14 +10,14 @@
 @section('subheader-main')
 
 <h3 class="kt-subheader__title">
-    Jabatan
+    Anggota
 </h3>
 <span class="kt-subheader__separator kt-hidden"></span>
 <div class="kt-subheader__breadcrumbs">
     <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
     <a href="" class="kt-subheader__breadcrumbs-link">
-        Tabel Data Jabatan </a>
+        Tabel Data Anggota </a>
     <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
 </div>
 
@@ -29,17 +29,17 @@
     <div class="kt-portlet__head kt-portlet__head--lg">
         <div class="kt-portlet__head-label">
             <span class="kt-portlet__head-icon">
-                <i class="kt-font-brand fa fa-sitemap"></i>
+                <i class="kt-font-brand fa fa-user-friends"></i>
             </span>
             <h3 class="kt-portlet__head-title">
-                Tabel Data Jabatan
+                Tabel Data Anggota
             </h3>
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
                     &nbsp;
-                    <a href="{{ route("jabatan.create") }}" class="btn btn-brand btn-elevate btn-icon-sm">
+                    <a href="{{ route("anggota.create") }}" class="btn btn-brand btn-elevate btn-icon-sm">
                         <i class="la la-plus"></i>
                         Tambah Data
                     </a>
@@ -47,7 +47,6 @@
             </div>
         </div>
     </div>
-    
     <div class="kt-portlet__body">
 
         <!--begin: Datatable -->
@@ -56,7 +55,13 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Nama Jabatan</th>
+                    <th>Nama Lengkap</th>
+                    <th>No. Registrasi Anggota</th>
+                    <th>Jabatan</th>
+                    <th>Email</th>
+                    <th>Kontak</th>
+                    <th>Alamat</th>
+                    <th>Status Surat</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -79,16 +84,22 @@
       $('.dataTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('jabatan.index') }}",
+        ajax: "{{ route('anggota.index') }}",
         columns: [
           {data: 'DT_RowIndex', name: 'DT_RowIndex'},
           {data: 'nama', name: 'nama'},
+          {data: 'noreg', name: 'noreg'},
+          {data: 'jabatans.nama', name: 'jabatans.nama'},
+          {data: 'email', name: 'email'},
+          {data: 'kontak', name: 'kontak'},
+          {data: 'alamat', name: 'alamat'},
+          {data: 'status_surat', name: 'status_surat'},
           {data: 'action', name: 'action'},
         ],
         columnDefs: [
           {
             className: 'text-center',
-            targets: [0,1,2],
+            targets: [0,8],
           },
         ],
         pagingType: "full_numbers"

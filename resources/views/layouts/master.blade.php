@@ -123,9 +123,9 @@
 													class="kt-menu__link-icon la la-envelope"></i><span
 													class="kt-menu__link-text">Persuratan</span></a></li>
 										<li class="kt-menu__item {{ ($anggota ? 'kt-menu__item--active' : '') }}" 
-											aria-haspopup="true"><a href="#"
+											aria-haspopup="true"><a href="{{ route('anggota.index') }}"
 												class="kt-menu__link "><i
-													class="kt-menu__link-icon la la-user"></i><span
+													class="kt-menu__link-icon la la-users"></i><span
 													class="kt-menu__link-text">Data Anggota</span></a></li>
 										<li class="kt-menu__item {{ ($jabatan ? 'kt-menu__item--active' : '') }}"
 											aria-haspopup="true"><a href="{{ route('jabatan.index') }}"

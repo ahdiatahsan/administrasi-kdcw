@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jabatan;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class JabatanController extends Controller

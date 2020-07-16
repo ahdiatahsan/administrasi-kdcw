@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('jabatan')->unsigned();
             $table->string('kontak');
+            $table->string('alamat');
             $table->string('noreg');
             $table->string('status_surat')->nullable();
             $table->string('foto')->nullable();

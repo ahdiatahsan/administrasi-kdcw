@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Relasi')
+@section('title', 'Anggota')
 
 @section('vendor-css')
 <link href="{{ asset("metronic/assets/plugins/custom/datatables/datatables.bundle.css") }}" rel="stylesheet"
@@ -10,14 +10,14 @@
 @section('subheader-main')
 
 <h3 class="kt-subheader__title">
-    Relasi
+    Anggota
 </h3>
 <span class="kt-subheader__separator kt-hidden"></span>
 <div class="kt-subheader__breadcrumbs">
     <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
     <a href="" class="kt-subheader__breadcrumbs-link">
-        Rincian Data Relasi </a>
+        Rincian Data Anggota </a>
     <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
 </div>
 
@@ -31,12 +31,12 @@
             <div class="kt-portlet__head">
                 <div class="kt-portlet__head-label">
                     <h3 class="kt-portlet__head-title">
-                        Nama Instansi
+                        Nama Lengkap
                     </h3>
                 </div>
             </div>
             <div class="kt-portlet__body">
-                {{ $relasi->nama }}
+                {{ $user->nama }}
             </div>
         </div>
     </div>
@@ -48,12 +48,25 @@
             <div class="kt-portlet__head">
                 <div class="kt-portlet__head-label">
                     <h3 class="kt-portlet__head-title">
-                        Email
+                        No. Registrasi Anggota
                     </h3>
                 </div>
             </div>
             <div class="kt-portlet__body">
-                {{ $relasi->email }}
+                {{ $user->noreg }}
+            </div>
+        </div>
+
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        Jabatan
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                {{ $user->jabatans->nama }}
             </div>
         </div>
 
@@ -66,7 +79,7 @@
                 </div>
             </div>
             <div class="kt-portlet__body">
-                {{ $relasi->alamat }}
+                {{ $user->alamat }}
             </div>
         </div>
     </div>
@@ -76,12 +89,12 @@
             <div class="kt-portlet__head">
                 <div class="kt-portlet__head-label">
                     <h3 class="kt-portlet__head-title">
-                        Kontak
+                        Email
                     </h3>
                 </div>
             </div>
             <div class="kt-portlet__body">
-                {{ $relasi->kontak }}
+                {{ $user->email }}
             </div>
         </div>
 
@@ -89,12 +102,25 @@
             <div class="kt-portlet__head">
                 <div class="kt-portlet__head-label">
                     <h3 class="kt-portlet__head-title">
-                        Keterangan
+                        Kontak
                     </h3>
                 </div>
             </div>
             <div class="kt-portlet__body">
-                {{ $relasi->keterangan }}
+                {{ $user->kontak }}
+            </div>
+        </div>
+
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        Status Surat
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                {{ $user->status_surat }}
             </div>
         </div>
     </div>
@@ -106,20 +132,20 @@
             <div class="kt-portlet__head">
                 <div class="kt-portlet__head-label">
                     <h3 class="kt-portlet__head-title">
-                        Logo Instansi
+                        Foto Anggota
                     </h3>
                 </div>
             </div>
             <div class="kt-portlet__body">
                 <div class="text-center">
-                    @if (Storage::exists('public/relasi/' . $relasi->logo))
-                    <a href="{{ Storage::url('public/relasi/' . $relasi->logo) }}" target="_blank">
+                    @if (Storage::exists('public/user/' . $user->foto))
+                    <a href="{{ Storage::url('public/user/' . $user->foto) }}" target="_blank">
                         <img class="img-fluid rounded text-center"
-                            src="{{ Storage::url('public/relasi/' . $relasi->logo) }}" id="photo_preview"
+                            src="{{ Storage::url('public/user/' . $user->foto) }}" id="photo_preview"
                             style="max-height: 250px;">
                     </a>
                     <br><br>
-                    <a class="btn btn-info" href="{{ Storage::url('public/relasi/' . $relasi->logo) }}" download>
+                    <a class="btn btn-info" href="{{ Storage::url('public/user/' . $user->foto) }}" download>
                         <i class="fa fa-file-download"></i>
                         Unduh Foto
                     </a>
