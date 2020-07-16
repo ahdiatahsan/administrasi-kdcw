@@ -29,6 +29,28 @@
 	@yield('vendor-css')
 	<!--end::Page Vendor Styles -->
 
+	<!--begin::php get route -->
+	@php
+
+	# Get current request route
+	$dashboard = request()->routeIs('dashboard');
+	$persuratan = request()->routeIs('persuratan*');
+	$anggota = request()->routeIs('anggota*');
+	$jabatan = request()->routeIs('jabatan*');
+	$databarang = request()->routeIs('data-barang*');
+	$peminjaman = request()->routeIs('peminjaman*');
+	$rekappinjam = request()->routeIs('rekapan-peminjaman*');
+	$keuangan = request()->routeIs('keuangan*');
+	$relasi = request()->routeIs('relasi*');
+	$profil = request()->routeIs('profil*');
+
+	$administrasiGroup = ($persuratan || $anggota || $jabatan);
+	$inventarisGroup = ($databarang || $peminjaman || $rekappinjam);
+	$pinjamGroup = ($peminjaman || $rekappinjam);
+
+	@endphp
+	<!--end::php get route -->
+
 </head>
 <!-- end::Head -->
 
@@ -79,13 +101,13 @@
 						data-ktmenu-dropdown="1" data-ktmenu-scroll="0">
 						<ul class="kt-menu__nav ">
 							<li
-								class="kt-menu__item  kt-menu__item--submenu @if(request()->routeIs('home')) {{ 'kt-menu__item--open kt-menu__item--here' }} @endif">
-								<a href="{{ route('home') }}" class="kt-menu__link"><i
+								class="kt-menu__item  kt-menu__item--submenu {{ ($dashboard ? 'kt-menu__item--open kt-menu__item--here' : '') }}" title="Dashboard">
+								<a href="{{ route('dashboard') }}" class="kt-menu__link"><i
 										class="kt-menu__link-icon fa fa-home"></i><span
 										class="kt-menu__link-text">Dashboard</span></a>
 							</li>
-							<li class="kt-menu__item  kt-menu__item--submenu @if(request()->routeIs('administrasi*')) {{ 'kt-menu__item--open kt-menu__item--here' }} @endif"
-								aria-haspopup="true" data-ktmenu-submenu-toggle="click"><a href="javascript:;"
+							<li class="kt-menu__item  kt-menu__item--submenu {{ ($administrasiGroup ? 'kt-menu__item--open kt-menu__item--here' : '') }}"
+								aria-haspopup="true" data-ktmenu-submenu-toggle="click" title="Adminisrasi"><a href="javascript:;"
 									class="kt-menu__link kt-menu__toggle"><i
 										class="kt-menu__link-icon fa fa-file-alt"></i><span
 										class="kt-menu__link-text">Administrasi</span><i
@@ -95,22 +117,25 @@
 										<li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span
 												class="kt-menu__link"><span
 													class="kt-menu__link-text">Administrasi</span></span></li>
-										<li class="kt-menu__item " aria-haspopup="true"><a href="#"
+										<li class="kt-menu__item {{ ($persuratan ? 'kt-menu__item--active' : '') }}" 
+											aria-haspopup="true"><a href="#"
 												class="kt-menu__link "><i
 													class="kt-menu__link-icon la la-envelope"></i><span
 													class="kt-menu__link-text">Persuratan</span></a></li>
-										<li class="kt-menu__item " aria-haspopup="true"><a href="#"
+										<li class="kt-menu__item {{ ($anggota ? 'kt-menu__item--active' : '') }}" 
+											aria-haspopup="true"><a href="#"
 												class="kt-menu__link "><i
 													class="kt-menu__link-icon la la-user"></i><span
 													class="kt-menu__link-text">Data Anggota</span></a></li>
-										<li class="kt-menu__item " aria-haspopup="true"><a href="#"
+										<li class="kt-menu__item {{ ($jabatan ? 'kt-menu__item--active' : '') }}"
+											aria-haspopup="true"><a href="{{ route('jabatan.index') }}"
 												class="kt-menu__link "><i
 													class="kt-menu__link-icon la la-sitemap"></i><span
 													class="kt-menu__link-text">Data Jabatan</span></a></li>
 									</ul>
 								</div>
 							</li>
-							<li class="kt-menu__item  kt-menu__item--submenu @if(request()->routeIs('inventaris*')) {{ 'kt-menu__item--open kt-menu__item--here' }} @endif"
+							<li class="kt-menu__item  kt-menu__item--submenu {{ ($inventarisGroup ? 'kt-menu__item--open kt-menu__item--here' : '') }}"
 								aria-haspopup="true" data-ktmenu-submenu-toggle="click" data-ktmenu-link-redirect="1"><a
 									target="_blank" href="javascript:;" class="kt-menu__link kt-menu__toggle"><i
 										class="kt-menu__link-icon fa fa-boxes"></i><span
@@ -121,24 +146,27 @@
 										<li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"
 											data-ktmenu-link-redirect="1"><span class="kt-menu__link"><span
 													class="kt-menu__link-text">Inventaris</span></span></li>
-										<li class="kt-menu__item " aria-haspopup="true" data-ktmenu-link-redirect="1"><a
+										<li class="kt-menu__item {{ ($databarang ? 'kt-menu__item--active' : '') }}" 
+											aria-haspopup="true" data-ktmenu-link-redirect="1"><a
 												href="#" class="kt-menu__link "><i
 													class="kt-menu__link-icon la la-dropbox"><span></span></i><span
 													class="kt-menu__link-text">Data Barang</span></a></li>
-										<li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true"
-											data-ktmenu-submenu-toggle="hover"><a href="javascript:;"
+										<li class="kt-menu__item  kt-menu__item--submenu {{ ($pinjamGroup ? 'kt-menu__item--open kt-menu__item--here' : '') }}" 
+											aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;"
 												class="kt-menu__link kt-menu__toggle"><i
 													class="kt-menu__link-icon la la-exchange"><span></span></i><span
 													class="kt-menu__link-text">Peminjaman</span><i
 													class="kt-menu__ver-arrow la la-angle-right"></i></a>
 											<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
 												<ul class="kt-menu__subnav">
-													<li class="kt-menu__item " aria-haspopup="true"><a href="#"
+													<li class="kt-menu__item {{ ($peminjaman ? 'kt-menu__item--active' : '') }}" 
+														aria-haspopup="true"><a href="#"
 															class="kt-menu__link "><i
 																class="kt-menu__link-icon flaticon-clipboard"></i><span
 																class="kt-menu__link-text">Data Barang
 																Dipinjam</span></a></li>
-													<li class="kt-menu__item " aria-haspopup="true"><a href="#"
+													<li class="kt-menu__item {{ ($rekappinjam ? 'kt-menu__item--active' : '') }}" 
+														aria-haspopup="true"><a href="#"
 															class="kt-menu__link "><i
 																class="kt-menu__link-icon flaticon-clock"></i><span
 																class="kt-menu__link-text">Rekapan Peminjaman
@@ -150,19 +178,19 @@
 								</div>
 							</li>
 							<li
-								class="kt-menu__item  kt-menu__item--submenu @if(request()->routeIs('keuangan*')) {{ 'kt-menu__item--open kt-menu__item--here' }} @endif">
+								class="kt-menu__item  kt-menu__item--submenu {{ ($keuangan ? 'kt-menu__item--open kt-menu__item--here' : '') }}">
 								<a href="{{ route('keuangan.index') }}" class="kt-menu__link"><i
 										class="kt-menu__link-icon fa fa-dollar-sign"></i><span
 										class="kt-menu__link-text">Keuangan</span></a>
 							</li>
 							<li
-								class="kt-menu__item  kt-menu__item--submenu @if(request()->routeIs('relasi*')) {{ 'kt-menu__item--open kt-menu__item--here' }} @endif">
+								class="kt-menu__item  kt-menu__item--submenu {{ ($relasi ? 'kt-menu__item--open kt-menu__item--here' : '') }}">
 								<a href="{{ route('relasi.index') }}" class="kt-menu__link"><i
 										class="kt-menu__link-icon fa fa-code-branch"></i><span
 										class="kt-menu__link-text">Relasi</span></a>
 							</li>
 							<li
-								class="kt-menu__item kt-menu__item--submenu kt-menu__item--bottom-1 @if(request()->routeIs('profil*')) {{ 'kt-menu__item--open kt-menu__item--here' }} @endif">
+								class="kt-menu__item kt-menu__item--submenu kt-menu__item--bottom-1 {{ ($profil ? 'kt-menu__item--open kt-menu__item--here' : '') }}">
 								<a href="{{ route('profil.index') }}" class="kt-menu__link"><i
 										class="kt-menu__link-icon fa fa-user-cog"></i><span
 										class="kt-menu__link-text">Profil</span></a>

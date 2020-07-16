@@ -15,127 +15,127 @@ class JabatanSeeder extends Seeder
         DB::table('jabatans')->insert(
             [
                 [
-                'nama' => 'kord_dpo',
+                'nama' => 'Koordinator DPO',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'dpo',
+                'nama' => 'DPO',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'kord_tim_ahli',
+                'nama' => 'Koordinator Tim Ahli',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'tim_ahli',
+                'nama' => 'Tim Ahli',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'ketum',
+                'nama' => 'Ketua Umum',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'wk1',
+                'nama' => 'Wakil Ketua 1',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'wk2',
+                'nama' => 'Wakil Ketua 2',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'sekum',
+                'nama' => 'Sekretaris Umum',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'bendum',
+                'nama' => 'Bendahara Umum',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'kord_keorganisasian',
+                'nama' => 'Koordinator Keorganisasian',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'staff_keorganisasian',
+                'nama' => 'Staf Keorganisasian',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'kord_P&R',
+                'nama' => 'Koordinator Public & Relation',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'staff_P&R',
+                'nama' => 'Staf Public & Relation&R',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'kord_tools',
+                'nama' => 'Koordinator Tools & Properties',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'staff_tools',
+                'nama' => 'Staf Tools & Properties',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'kord_keilmuan',
+                'nama' => 'Koordinator Keilmuan',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'kord_program',
+                'nama' => 'Koordinator Program',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'staff_program',
+                'nama' => 'Staf Program',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'kord_network',
+                'nama' => 'Koordinator Network',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'staff_network',
+                'nama' => 'Staf Network',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'kord_multimedia',
+                'nama' => 'Koordinator Multimedia',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'staff_multimedia',
+                'nama' => 'Staf Multimedia',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'kord_hardware',
+                'nama' => 'Koordinator Hardware',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'staff_hardware',
+                'nama' => 'Staf Hardware',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'all_crew',
+                'nama' => 'All Crew',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],

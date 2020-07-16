@@ -14,8 +14,13 @@
 //konfigurasi autentikasi
 Auth::routes(['register' => false, 'verify' => false]);
 
+//adminstrasi
+Route::prefix('admininstrasi')->group(function () {
+    Route::resource('jabatan', 'JabatanController'); //jabatan
+});
+
 //dashboard
-Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 //relasi
 Route::resource('relasi', 'RelasiController');
