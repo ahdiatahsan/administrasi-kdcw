@@ -15,9 +15,13 @@
 Auth::routes(['register' => false, 'verify' => false]);
 
 //adminstrasi
-Route::prefix('admininstrasi')->group(function () {
+Route::prefix('administrasi')->group(function () {
     Route::resource('jabatan', 'JabatanController'); //jabatan
     Route::resource('anggota', 'UserController', ['parameters' => ['anggota' => 'user']]); //anggota-users
+    Route::resource('persuratan', 'PersuratanController'); //persuratan
+    // API data administrasi dalam datatable --> tetap harus auth
+    Route::get('table_surat_masuk', 'PersuratanController@surat_masuk')->name('surat_masuk');
+    Route::get('table_surat_keluar', 'PersuratanController@surat_keluar')->name('surat_keluar');
 });
 
 //dashboard

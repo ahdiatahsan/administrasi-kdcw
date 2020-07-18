@@ -107,7 +107,7 @@
 										class="kt-menu__link-text">Dashboard</span></a>
 							</li>
 							<li class="kt-menu__item  kt-menu__item--submenu {{ ($administrasiGroup ? 'kt-menu__item--open kt-menu__item--here' : '') }}"
-								aria-haspopup="true" data-ktmenu-submenu-toggle="click" title="Adminisrasi"><a href="javascript:;"
+								aria-haspopup="true" data-ktmenu-submenu-toggle="click" title="Administrasi"><a href="javascript:;"
 									class="kt-menu__link kt-menu__toggle"><i
 										class="kt-menu__link-icon fa fa-file-alt"></i><span
 										class="kt-menu__link-text">Administrasi</span><i
@@ -118,7 +118,7 @@
 												class="kt-menu__link"><span
 													class="kt-menu__link-text">Administrasi</span></span></li>
 										<li class="kt-menu__item {{ ($persuratan ? 'kt-menu__item--active' : '') }}" 
-											aria-haspopup="true"><a href="#"
+											aria-haspopup="true"><a href="{{ route('persuratan.index') }}"
 												class="kt-menu__link "><i
 													class="kt-menu__link-icon la la-envelope"></i><span
 													class="kt-menu__link-text">Persuratan</span></a></li>

@@ -19,7 +19,7 @@ class CreatePersuratansTable extends Migration
             $table->string('judul');
             $table->string('dari_kepada');
             $table->date('tanggal');
-            $table->enum('jenis_surat', ['surat_masuk', 'surat_keluar']);
+            $table->enum('jenis_surat', ['Surat Masuk', 'Surat Keluar']);
             $table->string('foto')->nullable();
             $table->integer('created_by')->unsigned();
             $table->timestamps();
