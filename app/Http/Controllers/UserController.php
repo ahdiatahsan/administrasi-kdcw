@@ -60,7 +60,7 @@ class UserController extends Controller
             'noreg' => 'required|max:255',
             'alamat' => 'required|max:255',
             'surat' => 'required|max:255',
-            'photo' => 'required|file|max:500|mimes:jpeg,jpg,png,webp'
+            'photo' => 'required|file|max:2048|mimes:jpeg,jpg,png,webp'
         ]);
 
         $photoFile = $request->file('photo');
@@ -130,7 +130,7 @@ class UserController extends Controller
 
         if ($request->file('photo') != null) {
             $request->validate([
-                'photo' => 'required|file|max:2000|mimes:jpeg,jpg,png,webp'
+                'photo' => 'required|file|max:2048|mimes:jpeg,jpg,png,webp'
             ]);
 
             if (Storage::exists('public/user/' . $user->foto)) {

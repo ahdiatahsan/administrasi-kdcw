@@ -14,8 +14,8 @@ class Databarang extends Model
     protected $fillable = [
         'nama', 
         'kondisi', 
-        'jumlah', 
-        'stok', 
+        'tersedia', 
+        'dipinjam', 
         'foto',
         'created_by'
     ];

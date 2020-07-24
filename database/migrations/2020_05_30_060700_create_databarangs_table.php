@@ -17,8 +17,8 @@ class CreateDatabarangsTable extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->string('kondisi');
-            $table->integer('jumlah');
-            $table->integer('stok');
+            $table->integer('tersedia');
+            $table->integer('dipinjam');
             $table->string('foto')->nullable();
             $table->integer('created_by')->unsigned();
             $table->timestamps();

@@ -14,6 +14,9 @@
 //konfigurasi autentikasi
 Auth::routes(['register' => false, 'verify' => false]);
 
+//dashboard
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
 //adminstrasi
 Route::prefix('administrasi')->group(function () {
     Route::resource('jabatan', 'JabatanController'); //jabatan
@@ -24,8 +27,11 @@ Route::prefix('administrasi')->group(function () {
     Route::get('table_surat_keluar', 'PersuratanController@surat_keluar')->name('surat_keluar');
 });
 
-//dashboard
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+//adminstrasi
+Route::prefix('inventaris')->group(function () {
+    Route::resource('barang', 'DatabarangController'); //data-barang
+    Route::resource('peminjaman', 'PeminjamanController'); //peminjaman
+});
 
 //relasi
 Route::resource('relasi', 'RelasiController');

@@ -13,7 +13,6 @@
     <span class="kt-subheader__breadcrumbs-separator"></span>
     <a href="" class="kt-subheader__breadcrumbs-link">
         Tambah Data Keuangan </a>
-    <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
 </div>
 
 @endsection
@@ -58,12 +57,11 @@
                     </div>
 
                     <div class="form-group form-group-last">
-                        <label>Nota</label>
+                        <label>Foto Nota</label><span class="text-danger">*</span></label>
                         <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo"
                             id="photo" required>
                         <small class="text-danger">Format nota yang diterima adalah jpeg, jpg, png, webp dengan ukuran
-                            maksimal 500
-                            KB.</small>
+                            maksimal 2 MB.</small>
                         <br><br><br>
                         <div class="text-center">
                             <img class="img-fluid rounded text-center" src="{{ asset('img/image.png') }}"

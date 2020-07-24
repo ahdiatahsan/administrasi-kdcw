@@ -5,15 +5,17 @@
 @section('subheader-main')
 
 <h3 class="kt-subheader__title">
-    Persuratan
+    Administrasi
 </h3>
 <span class="kt-subheader__separator kt-hidden"></span>
 <div class="kt-subheader__breadcrumbs">
     <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
     <a href="" class="kt-subheader__breadcrumbs-link">
-        Tambah Data Persuratan </a>
-    <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
+        Persuratan </a>
+    <span class="kt-subheader__breadcrumbs-separator"></span>
+    <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+        Tambah Data Persuratan </span>
 </div>
 
 @endsection
@@ -68,12 +70,11 @@
                     </div>
 
                     <div class="form-group form-group-last">
-                        <label>Foto Surat</label>
+                        <label>Foto Surat</label><span class="text-danger">*</span></label>
                         <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo"
                             id="photo" required>
                         <small class="text-danger">Format foto yang diterima adalah jpeg, jpg, png, webp dengan ukuran
-                            maksimal 500
-                            KB.</small>
+                            maksimal 1 MB.</small>
                         <br><br><br>
                         <div class="text-center">
                             <img class="img-fluid rounded text-center" src="{{ asset('img/image.png') }}"

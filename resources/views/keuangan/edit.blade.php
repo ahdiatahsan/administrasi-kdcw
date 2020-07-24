@@ -12,8 +12,7 @@
     <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
     <a href="" class="kt-subheader__breadcrumbs-link">
-        Edit Data Keuangan </a>
-    <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
+        Ubah Data Keuangan </a>
 </div>
 
 @endsection
@@ -30,7 +29,7 @@
                 <div class="kt-portlet__head">
                     <div class="kt-portlet__head-label">
                         <h3 class="kt-portlet__head-title">
-                            Edit Data Keuangan
+                            Ubah Data Keuangan
                         </h3>
                     </div>
                 </div>
@@ -50,7 +49,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Jenis Dana</label>
+                        <label>Jenis Dana</label><span class="text-danger">*</span></label>
                         <select class="form-control @error('jenis_dana') is-invalid @enderror" 
                             id="jenis_dana" name="jenis_dana" required>
                             <option value="Dana Masuk" {{ ($keuangan->jenis_dana == 'Dana Masuk') ? 'selected' : '' }}>
@@ -63,11 +62,11 @@
                     </div>
 
                     <div class="form-group form-group-last">
-                        <label>Nota</label>
+                        <label>Foto Nota</label><span class="text-danger">*</span></label>
                         <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo"
                             id="photo">
                         <small class="text-danger">Format nota yang diterima adalah jpeg, jpg, png, webp dengan ukuran
-                            maksimal 500 KB.</small>
+                            maksimal 2 MB.</small>
                         <br><br><br>
                         <div class="text-center">
                             @if (Storage::exists('public/keuangan/' . $keuangan->nota))

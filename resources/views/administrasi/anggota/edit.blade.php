@@ -5,15 +5,17 @@
 @section('subheader-main')
 
 <h3 class="kt-subheader__title">
-    Anggota
+    Administrasi
 </h3>
 <span class="kt-subheader__separator kt-hidden"></span>
 <div class="kt-subheader__breadcrumbs">
     <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
     <a href="" class="kt-subheader__breadcrumbs-link">
-        Edit Data Anggota </a>
-    <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
+        Anggota </a>
+    <span class="kt-subheader__breadcrumbs-separator"></span>
+    <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+        Ubah Data Anggota </span>
 </div>
 
 @endsection
@@ -29,7 +31,7 @@
                 <div class="kt-portlet__head">
                     <div class="kt-portlet__head-label">
                         <h3 class="kt-portlet__head-title">
-                            Edit Data Anggota
+                            Ubah Data Anggota
                         </h3>
                     </div>
                 </div>
@@ -51,7 +53,7 @@
                     <div class="form-group">
                         <label>No. Registrasi Anggota<span class="text-danger">*</span></label>
                         <input class="form-control @error('noreg') is-invalid @enderror" type="text" name="noreg"
-                            id="noreg" value="{{ $user->noreg }}" required autofocus>
+                            id="noreg" value="{{ $user->noreg }}" required>
                     </div>
 
                     <div class="form-group">
@@ -90,11 +92,11 @@
                     </div>
 
                     <div class="form-group form-group-last">
-                        <label>Foto Anggota</label>
+                        <label>Foto Anggota</label><span class="text-danger">*</span></label>
                         <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo"
                             id="photo">
                         <small class="text-danger">Format foto yang diterima adalah jpeg, jpg, png, webp dengan ukuran
-                            maksimal 500 KB.</small>
+                            maksimal 2 MB.</small>
                         <br><br><br>
                         <div class="text-center">
                             @if (Storage::exists('public/user/' . $user->foto))

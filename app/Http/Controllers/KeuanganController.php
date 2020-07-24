@@ -56,7 +56,7 @@ class KeuanganController extends Controller
             'keterangan' => 'required|max:255',
             'nominal' => 'required|numeric',
             'jenis_dana' => 'required',
-            'photo' => 'required|file|max:500|mimes:jpeg,jpg,png,webp'
+            'photo' => 'required|file|max:2048|mimes:jpeg,jpg,png,webp'
         ]);
 
         $photoFile = $request->file('photo');
@@ -114,7 +114,7 @@ class KeuanganController extends Controller
 
         if ($request->file('photo') != null) {
             $request->validate([
-                'photo' => 'required|file|max:2000|mimes:jpeg,jpg,png,webp'
+                'photo' => 'required|file|max:2048|mimes:jpeg,jpg,png,webp'
             ]);
 
             if (Storage::exists('public/keuangan/' . $keuangan->nota)) {

@@ -55,7 +55,7 @@ class RelasiController extends Controller
             'kontak' => 'required|max:255',
             'alamat' => 'required|max:255',
             'keterangan' => 'required|max:255',
-            'photo' => 'required|file|max:500|mimes:jpeg,jpg,png,webp'
+            'photo' => 'required|file|max:1024|mimes:jpeg,jpg,png,webp'
         ]);
 
         $photoFile = $request->file('photo');
@@ -117,7 +117,7 @@ class RelasiController extends Controller
 
         if ($request->file('photo') != null) {
             $request->validate([
-                'photo' => 'required|file|max:2000|mimes:jpeg,jpg,png,webp'
+                'photo' => 'required|file|max:1024|mimes:jpeg,jpg,png,webp'
             ]);
 
             if (Storage::exists('public/relasi/' . $relasi->logo)) {

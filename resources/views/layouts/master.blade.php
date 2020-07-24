@@ -11,7 +11,7 @@
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<title>@yield('title')</title>
+	<title>Administrasi KDCW {{ date('Y') }} - @yield('title')</title>
 
 	<!--begin::Fonts -->
 	<link rel="stylesheet"
@@ -37,9 +37,9 @@
 	$persuratan = request()->routeIs('persuratan*');
 	$anggota = request()->routeIs('anggota*');
 	$jabatan = request()->routeIs('jabatan*');
-	$databarang = request()->routeIs('data-barang*');
+	$databarang = request()->routeIs('barang*');
 	$peminjaman = request()->routeIs('peminjaman*');
-	$rekappinjam = request()->routeIs('rekapan-peminjaman*');
+	$rekappinjam = request()->routeIs('peminjaman/rekap');
 	$keuangan = request()->routeIs('keuangan*');
 	$relasi = request()->routeIs('relasi*');
 	$profil = request()->routeIs('profil*');
@@ -148,7 +148,7 @@
 													class="kt-menu__link-text">Inventaris</span></span></li>
 										<li class="kt-menu__item {{ ($databarang ? 'kt-menu__item--active' : '') }}" 
 											aria-haspopup="true" data-ktmenu-link-redirect="1"><a
-												href="#" class="kt-menu__link "><i
+												href="{{ route('barang.index') }}" class="kt-menu__link "><i
 													class="kt-menu__link-icon la la-dropbox"><span></span></i><span
 													class="kt-menu__link-text">Data Barang</span></a></li>
 										<li class="kt-menu__item  kt-menu__item--submenu {{ ($pinjamGroup ? 'kt-menu__item--open kt-menu__item--here' : '') }}" 
@@ -284,7 +284,7 @@
 				<div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
 					<div class="kt-container  kt-container--fluid ">
 						<div class="kt-footer__copyright">
-							2020&nbsp;&copy;&nbsp;<a href="{{'https://kedai.or.id'}}" target="_blank"
+							{{ date('Y') }}&nbsp;&copy;&nbsp;<a href="{{'https://kedai.or.id'}}" target="_blank"
 								class="kt-link">KeDai Computerworks</a>
 						</div>
 					</div>
