@@ -31,6 +31,7 @@ Route::prefix('administrasi')->group(function () {
 Route::prefix('inventaris')->group(function () {
     Route::resource('barang', 'DatabarangController'); //data-barang
     Route::resource('peminjaman', 'PeminjamanController'); //peminjaman
+    Route::get('/rekapan-peminjaman', 'PeminjamanController@rekap')->name('rekap_peminjaman');
 });
 
 //relasi

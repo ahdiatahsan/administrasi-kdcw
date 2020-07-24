@@ -60,6 +60,7 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="suratMasuk" role="tabpanel">
+                <div class="table-responsive">
                 <!--begin: Datatable -->
                 <table class="table table-striped table-bordered table-hover suratMasuk no-footer dtr-inline" id="table"
                     role="grid" aria-describedby="table">
@@ -75,6 +76,7 @@
                         </tr>
                     </thead>
                 </table>
+                </div>
                 <!--end: Datatable -->
             </div>
             <div class="tab-pane" id="suratKeluar" role="tabpanel">

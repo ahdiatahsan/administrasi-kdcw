@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Inventaris (Barang)')
+@section('title', 'Inventaris (Peminjaman)')
 
 @section('vendor-css')
 <link href="{{ asset("metronic/assets/plugins/custom/datatables/datatables.bundle.css") }}" rel="stylesheet"
@@ -17,10 +17,10 @@
     <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
     <a href="" class="kt-subheader__breadcrumbs-link">
-        Barang </a>
+        Peminjaman </a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
     <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
-        Tabel Data Barang </span>
+        Tabel Rekapan Peminjaman Barang </span>
 </div>
 
 @endsection
@@ -34,19 +34,8 @@
                 <i class="kt-font-brand fa fa-box-open"></i>
             </span>
             <h3 class="kt-portlet__head-title">
-                Tabel Data Barang
+                Tabel Rekapan Peminjaman Barang
             </h3>
-        </div>
-        <div class="kt-portlet__head-toolbar">
-            <div class="kt-portlet__head-wrapper">
-                <div class="kt-portlet__head-actions">
-                    &nbsp;
-                    <a href="{{ route("barang.create") }}" class="btn btn-brand btn-elevate btn-icon-sm">
-                        <i class="la la-plus"></i>
-                        Tambah Data
-                    </a>
-                </div>
-            </div>
         </div>
     </div>
     <div class="kt-portlet__body">
@@ -58,11 +47,12 @@
                 <tr>
                     <th>No.</th>
                     <th>Nama Barang</th>
-                    <th>Kondisi </th>
-                    <th>Jumlah Total</th>
+                    <th>Peminjam </th>
                     <th>Jumlah Dipinjam</th>
-                    <th>Created_By</th>
-                    <th>Actions</th>
+                    <th>Tanggal Dipinjam</th>
+                    <th>Tanggal Dikembalikan</th>
+                    <th>Keterangan</th>
+                    <th>Diterima Oleh</th>
                 </tr>
             </thead>
         </table>
@@ -84,20 +74,21 @@
       $('.dataTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('barang.index') }}",
+        ajax: "{{ route('rekap_peminjaman') }}",
         columns: [
           {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-          {data: 'nama', name: 'nama'},
-          {data: 'kondisi', name: 'kondisi'},
-          {data: 'tersedia', name: 'tersedia'},
-          {data: 'dipinjam', name: 'dipinjam'},
-          {data: 'user.nama', name: 'user.nama'},
-          {data: 'action', name: 'action'},
+          {data: 'nama_barang', name: 'nama_barang'},
+          {data: 'peminjam', name: 'peminjam'},
+          {data: 'jumlah', name: 'jumlah'},
+          {data: 'tanggal_dipinjam', name: 'tanggal_dipinjam'},
+          {data: 'tanggal_kembali', name: 'tanggal_kembali'},
+          {data: 'keterangan', name: 'keterangan'},
+          {data: 'diterima_oleh', name: 'diterima_oleh'},
         ],
         columnDefs: [
           {
             className: 'text-center',
-            targets: [0,6],
+            targets: [0],
           },
         ],
         pagingType: "full_numbers"

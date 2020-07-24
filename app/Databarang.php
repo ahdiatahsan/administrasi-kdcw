@@ -22,7 +22,7 @@ class Databarang extends Model
 
     public function peminjaman()
     {
-        return $this->hasMany('App\Peminjaman', 'kode_barang');
+        return $this->hasMany('App\Peminjaman', 'barang_id');
     }
 
     public function user()

@@ -6,23 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Peminjaman extends Model
 {
+    protected $table = 'peminjamans';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'kode_barang', 
+        'barang_id', 
         'peminjam', 
         'jumlah', 
         'tanggal_kembali',
-        'created_by',
-        'accepted_by'
+        'keterangan',
+        'created_by'
     ];
 
-    public function databarang()
+    public function barang()
     {
-        return $this->belongsTo('App\Databarang', 'kode_barang');
+        return $this->belongsTo('App\Databarang', 'barang_id');
     }
 
     public function user()

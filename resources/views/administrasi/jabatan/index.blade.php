@@ -51,7 +51,7 @@
     </div>
     
     <div class="kt-portlet__body">
-
+        <div class="table-responsive">
         <!--begin: Datatable -->
         <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="table"
             role="grid" aria-describedby="table">
@@ -63,7 +63,7 @@
                 </tr>
             </thead>
         </table>
-
+        </div>
         <!--end: Datatable -->
     </div>
 </div>

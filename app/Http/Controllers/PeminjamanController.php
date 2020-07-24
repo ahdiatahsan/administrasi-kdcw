@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Peminjaman;
+use App\Rekapan;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class PeminjamanController extends Controller
 {
@@ -15,6 +17,22 @@ class PeminjamanController extends Controller
     public function index()
     {
         //
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function rekap(Request $request)
+    {
+        if ($request->ajax()) {
+            $rekapans = Rekapan::all();
+            return DataTables::of($rekapans)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('inventaris.peminjaman.rekap');
     }
 
     /**

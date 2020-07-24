@@ -39,7 +39,7 @@
 	$jabatan = request()->routeIs('jabatan*');
 	$databarang = request()->routeIs('barang*');
 	$peminjaman = request()->routeIs('peminjaman*');
-	$rekappinjam = request()->routeIs('peminjaman/rekap');
+	$rekappinjam = request()->routeIs('rekap_peminjaman');
 	$keuangan = request()->routeIs('keuangan*');
 	$relasi = request()->routeIs('relasi*');
 	$profil = request()->routeIs('profil*');
@@ -166,7 +166,7 @@
 																class="kt-menu__link-text">Data Barang
 																Dipinjam</span></a></li>
 													<li class="kt-menu__item {{ ($rekappinjam ? 'kt-menu__item--active' : '') }}" 
-														aria-haspopup="true"><a href="#"
+														aria-haspopup="true"><a href="{{ route('rekap_peminjaman') }}"
 															class="kt-menu__link "><i
 																class="kt-menu__link-icon flaticon-clock"></i><span
 																class="kt-menu__link-text">Rekapan Peminjaman
