@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +23,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        //administrasi
+        $persuratan = DB::table('persuratans')->count();
+        $anggota = DB::table('users')->count();
+
+        //inventaris
+        $barang = DB::table('databarangs')->count();
+        $peminjaman = DB::table('peminjamans')->count();
+
+        //relasi
+        $relasi = DB::table('relasis')->count();
+
+        //keuangan
+        $dana_masuk = DB::table('keuangans')->where('jenis_dana', '=', 'Dana Masuk')->value(DB::raw("SUM(nominal)"));
+        $dana_keluar = DB::table('keuangans')->where('jenis_dana', '=', 'Dana Keluar')->value(DB::raw("SUM(nominal)"));
+        $saldo = $dana_masuk - $dana_keluar;
+
+        return view('home', compact(
+            'persuratan',
+            'anggota',
+            'barang',
+            'peminjaman',
+            'relasi',
+            'saldo'
+        ));
     }
 }

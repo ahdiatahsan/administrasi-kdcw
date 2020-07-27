@@ -25,20 +25,20 @@
         <div class="kt-widget1">
           <div class="kt-widget1__item">
             <div class="kt-widget1__info">
-              <a href="{{-- route('destination.index') --}}" class="text-dark">
+              <a href="{{ route('persuratan.index') }}" class="text-dark">
                 <h5>Persuratan</h5>
               </a>
             </div>
-            <span class="kt-widget1__number kt-font-info">123{{-- $destination --}}</span>
+            <span class="kt-widget1__number kt-font-info">{{ $persuratan }}</span>
           </div>
 
           <div class="kt-widget1__item">
             <div class="kt-widget1__info">
-              <a href="{{-- route('category.index') --}}" class="text-dark">
+              <a href="{{ route('anggota.index') }}" class="text-dark">
                 <h5>Data Anggota</h5>
               </a>
             </div>
-            <span class="kt-widget1__number kt-font-info">123{{-- $category --}}</span>
+            <span class="kt-widget1__number kt-font-info">{{ $anggota }}</span>
           </div>
         </div>
       </div>
@@ -57,20 +57,20 @@
         <div class="kt-widget1">
           <div class="kt-widget1__item">
             <div class="kt-widget1__info">
-              <a href="{{-- route('user.index') --}}" class="text-dark">
+              <a href="{{ route('barang.index') }}" class="text-dark">
                 <h5>Data Barang</h5>
               </a>
             </div>
-            <span class="kt-widget1__number kt-font-info">123{{-- $user --}}</span>
+            <span class="kt-widget1__number kt-font-info">{{ $barang }}</span>
           </div>
 
           <div class="kt-widget1__item">
             <div class="kt-widget1__info">
-              <a href="{{-- route('plan.index') --}}" class="text-dark">
+              <a href="{{ route('peminjaman.index') }}" class="text-dark">
                 <h5>Peminjaman</h5>
               </a>
             </div>
-            <span class="kt-widget1__number kt-font-info">123{{-- $plan --}}</span>
+            <span class="kt-widget1__number kt-font-info">{{ $peminjaman }}</span>
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
       <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
           <span class="kt-portlet__head-icon"><i class="fa fa-code-branch"></i></span>
-          <a href="{{-- route('event.index') --}}" class="text-dark">
+          <a href="{{ route('relasi.index') }}" class="text-dark">
             <h3 class="kt-portlet__head-title">Relasi</h3>
           </a>
         </div>
@@ -92,7 +92,7 @@
       <div>
         <div class="kt-widget1">
           <div class="kt-widget1__item justify-content-center">
-            <span class="kt-widget1__number kt-font-info">123{{-- $event --}}</span>
+            <span class="kt-widget1__number kt-font-info">{{ $relasi }}</span>
           </div>
         </div>
       </div>
@@ -104,7 +104,7 @@
       <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
           <span class="kt-portlet__head-icon"><i class="fa fa-dollar-sign"></i></span>
-          <a href="{{-- route('contact.index') --}}" class="text-dark">
+          <a href="{{ route('keuangan.index') }}" class="text-dark">
             <h3 class="kt-portlet__head-title">Keuangan</h3>
           </a>
         </div>
@@ -112,7 +112,7 @@
       <div>
         <div class="kt-widget1">
           <div class="kt-widget1__item justify-content-center">
-            <span class="kt-widget1__number kt-font-info">Rp. 9999999{{-- $contact --}}</span>
+            <span class="kt-widget1__number kt-font-info">Rp. {{ $saldo }}</span>
           </div>
         </div>
       </div>

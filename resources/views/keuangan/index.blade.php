@@ -55,8 +55,8 @@
                 <tr>
                     <th>No.</th>
                     <th>Keterangan Dana</th>
-                    <th>Nominal (Rp.)</th>
                     <th>Jenis Dana</th>
+                    <th>Nominal (Rp.)</th>
                     <th>Created_By</th>
                     <th>Actions</th>
                 </tr>
@@ -84,15 +84,15 @@
         columns: [
           {data: 'DT_RowIndex', name: 'DT_RowIndex'},
           {data: 'keterangan', name: 'keterangan'},
-          {data: 'nominal', name: 'nominal'},
           {data: 'jenis_dana', name: 'jenis_dana'},
+          {data: 'nominal', name: 'nominal'},
           {data: 'user.nama', name: 'user.nama'},
           {data: 'action', name: 'action'},
         ],
         columnDefs: [
           {
             className: 'text-center',
-            targets: [0,3,5],
+            targets: [0,2,5],
           },
         ],
         pagingType: "full_numbers"

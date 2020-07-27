@@ -15,7 +15,7 @@ class CreateKeuangansTable extends Migration
     {
         Schema::create('keuangans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('jenis_dana');
+            $table->enum('jenis_dana', ['Dana Masuk', 'Dana Keluar']);
             $table->integer('nominal');
             $table->string('keterangan');
             $table->string('nota')->nullable();
