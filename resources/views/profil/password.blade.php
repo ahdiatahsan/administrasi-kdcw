@@ -5,11 +5,12 @@
 @section('subheader-main')
 
 <h3 class="kt-subheader__title">
-    Profil
+    <button class="kt-subheader__mobile-toggle kt-subheader__mobile-toggle--left" id="kt_subheader_mobile_toggle">
+    <span></span></button> Profil
 </h3>
 <span class="kt-subheader__separator kt-hidden"></span>
 <div class="kt-subheader__breadcrumbs">
-    <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+    <a href="{{ route('profil.index') }}" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
     <a href="" class="kt-subheader__breadcrumbs-link">
         Ganti Password </a>
@@ -217,4 +218,8 @@
 </div>
 
 <!--End::App-->
+@endsection
+
+@section('vendor-js')
+    <script src="{{ asset('metronic/assets/js/pages/custom/user/profile.js') }}" type="text/javascript"></script>
 @endsection
