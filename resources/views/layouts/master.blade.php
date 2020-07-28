@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="id">
 
 <!-- begin::Head -->
 
@@ -33,7 +33,7 @@
 	@php
 
 	# Get current request route
-	$dashboard = request()->routeIs('dashboard');
+	$dashboard = request()->routeIs('dashboard', 'home');
 	$persuratan = request()->routeIs('persuratan*');
 	$anggota = request()->routeIs('anggota*');
 	$jabatan = request()->routeIs('jabatan*');
@@ -219,12 +219,20 @@
 						<div class="kt-header__topbar-item kt-header__topbar-item--user">
 							<div class="kt-header__topbar-wrapper" data-offset="10px,0px">
 								<span class="kt-header__topbar-welcome text-right">
-									Nama Lengkap <br> Jabatan
+									{{ Auth::user()->nama }} <br> 
+									{{ Auth::user()->jabatans->nama }}
 								</span>
-								<img class="" alt="Pic" src="{{ asset('metronic/assets/media/users/300_21.jpg') }}" />
+								@if (Storage::exists('public/user/' . Auth::user()->foto))
+									<img class="" alt="Pic" src="{{ Storage::url('public/user/' . Auth::user()->foto) }}" />
+          						@else
+									<img class="" alt="Pic" src="{{ asset('metronic/assets/media/users/300_21.jpg') }}" />
+								@endif
 								&nbsp; &nbsp;
 								<span class="kt-header__topbar-welcome">
-									<a href="#logout" class="btn btn-label btn-label-danger btn-sm btn-bold">Logout</a>
+									<form id="logout-form" action="{{ route('logout') }}" method="POST">
+										@csrf
+										<button type="submit" class="btn btn-label btn-label-danger btn-sm btn-bold" onclick="return confirm('Keluar dari admin panel ?');">Logout</button>
+									</form>
 								</span>
 							</div>
 						</div>

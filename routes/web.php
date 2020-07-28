@@ -16,6 +16,7 @@ Auth::routes(['register' => false, 'verify' => false]);
 
 //dashboard
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/', 'HomeController@index')->name('home');
 
 //adminstrasi
 Route::prefix('administrasi')->group(function () {
@@ -47,9 +48,5 @@ Route::get('/profil/password', 'ProfilController@password')->name('profil_pass')
 Route::resource('profil', 'ProfilController');
 
 //botman
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::match(['get', 'post'], '/botman', 'BotManController@handle');
 Route::get('/botman/tinker', 'BotManController@tinker');

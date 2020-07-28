@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert(
             [ 
                 [
-                'nama' => 'Sekretaris Umum',
+                'nama' => 'User',
                 'email' => 'sekum@kedai.or.id', 
                 'password' => bcrypt('12341234'), 
                 'jabatan' => 8,
@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'alamat' => 'BTP Blok.M No.541',
                 'noreg' => '001.KD.XVIII.19',
                 'status_surat' => 'Kosong',
-                'foto' => 'image.png', 
+                'foto' => 'user.png', 
                 'created_at' => now(), 
                 'updated_at' => now()
                 ],
