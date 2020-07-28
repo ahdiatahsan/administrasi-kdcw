@@ -50,25 +50,32 @@
                 <div class="kt-widget kt-widget--user-profile-1">
                     <div class="kt-widget__head">
                         <div class="kt-widget__media">
-                            <img src="assets/media/users/100_13.jpg" alt="image">
+                            @if (Storage::exists('public/user/' . Auth::user()->foto))
+                            <img class="" alt="Pic" src="{{ Storage::url('public/user/' . Auth::user()->foto) }}"
+                                width="1000px" />
+                            @else
+                            <img class="" alt="Pic" src="{{ asset('img/user.png') }}" />
+                            @endif
                         </div>
                         <div class="kt-widget__content">
                             <div class="kt-widget__section">
-                                <a href="#" class="kt-widget__username">
-                                    Nama Lengkap
+                                <span class="kt-widget__username">
+                                    {{ Auth::user()->nama }}
                                     <i class="flaticon2-correct kt-font-success"></i>
-                                </a>
-                                <span class="kt-widget__subtitle">
-                                    Jabatan
                                 </span>
+                                <span class="kt-widget__subtitle">
+                                    {{ Auth::user()->jabatans->nama }}
+                                </span>
+                            </div>
+                            <div class="kt-widget__action">
+                                <span class="btn btn-info btn-sm">KeDai Computerworks</span>
                             </div>
                         </div>
                     </div>
                     <div class="kt-widget__body">
                         <div class="kt-widget__content"> </div>
                         <div class="kt-widget__items">
-                            <a href="{{ route('profil.index') }}"
-                                class="kt-widget__item ">
+                            <a href="{{ route('profil.index') }}" class="kt-widget__item ">
                                 <span class="kt-widget__section">
                                     <span class="kt-widget__icon">
                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +96,7 @@
                                     </span>
                                 </span>
                             </a>
-                            <a href="{{ route('profil_pass') }}" 
+                            <a href="{{ route('profil.edit', Auth::user()->id) }}"
                                 class="kt-widget__item kt-widget__item--active">
                                 <span class="kt-widget__section">
                                     <span class="kt-widget__icon">
@@ -134,35 +141,55 @@
                 <div class="kt-portlet">
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
-                            <h3 class="kt-portlet__head-title">Informasi Pribadi Anda </h3>
+                            <h3 class="kt-portlet__head-title">Ganti Password</h3>
                         </div>
                     </div>
-                    <form class="kt-form kt-form--label-right">
+                    <form class="kt-form kt-form--label-right" autocomplete="off"
+                        action="{{ route('profil.update', Auth::user()->id) }}" method="POST">
+                        @csrf
+                        @method('PATCH')
                         <div class="kt-portlet__body">
                             <div class="kt-section kt-section--first">
                                 <div class="kt-section__body">
-                                    <div class="row">
-                                        <label class="col-xl-3"></label>
-                                        <div class="col-lg-9 col-xl-6">
-                                            <h3 class="kt-section__title kt-section__title-sm">Perbarui Password Akun Anda:</h3>
+                                    <div class="alert alert-solid-danger alert-bold fade show kt-margin-t-5 kt-margin-b-25"
+                                        role="alert">
+                                        <div class="alert-icon"><i class="fa fa-exclamation-triangle"></i></div>
+                                        <div class="alert-text">
+                                            Berhati-hatilah ketika ingin mengganti / memperbarui password Anda. <br>
+                                            Dan amankan password baru Anda jika telah melakukan penggantian
+                                            password.
+                                        </div>
+                                        <div class="alert-close">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true"><i class="la la-close"></i></span>
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">Password Sekarang</label>
+                                        <label class="col-xl-3 col-lg-3 col-form-label">Password Lama</label>
                                         <div class="col-lg-9 col-xl-6">
-                                            <input type="password" class="form-control" value="" placeholder="Password Sekarang">
+                                            <input type="password"
+                                                class="form-control @error('old_password') is-invalid @enderror"
+                                                name="old_password" id="old_password" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-xl-3 col-lg-3 col-form-label">Password Baru</label>
                                         <div class="col-lg-9 col-xl-6">
-                                            <input type="password" class="form-control" value="" placeholder="Password Baru">
+                                            <input type="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                name="password" id="password" min="8" placeholder="Minimal 8 Digit"
+                                                required autocomplete="new-password">
                                         </div>
                                     </div>
                                     <div class="form-group form-group-last row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">Konfirmasi Password Baru</label>
+                                        <label class="col-xl-3 col-lg-3 col-form-label">Konfirmasi Password
+                                            Baru</label>
                                         <div class="col-lg-9 col-xl-6">
-                                            <input type="password" class="form-control" value="" placeholder="Konfirmasi Password Baru">
+                                            <input type="password"
+                                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                name="password_confirmation" id="password-confirm" required
+                                                autocomplete="new-password">
                                         </div>
                                     </div>
                                 </div>
@@ -174,8 +201,9 @@
                                     <div class="col-lg-3 col-xl-3">
                                     </div>
                                     <div class="col-lg-9 col-xl-9">
-                                        <button type="reset" class="btn btn-brand btn-bold">Change Password</button>&nbsp;
-                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                        <button type="submit" class="btn btn-brand btn-bold">Simpan
+                                            Password</button>&nbsp;
+                                        <button type="reset" class="btn btn-secondary">Reset</button>
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +213,6 @@
             </div>
         </div>
     </div>
-
     <!--End:: App Content-->
 </div>
 

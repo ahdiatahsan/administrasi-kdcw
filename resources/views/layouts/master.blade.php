@@ -225,13 +225,14 @@
 								@if (Storage::exists('public/user/' . Auth::user()->foto))
 									<img class="" alt="Pic" src="{{ Storage::url('public/user/' . Auth::user()->foto) }}" />
           						@else
-									<img class="" alt="Pic" src="{{ asset('metronic/assets/media/users/300_21.jpg') }}" />
+									<img class="" alt="Pic" src="{{ asset('img/user.png') }}" />
 								@endif
 								&nbsp; &nbsp;
 								<span class="kt-header__topbar-welcome">
 									<form id="logout-form" action="{{ route('logout') }}" method="POST">
 										@csrf
-										<button type="submit" class="btn btn-label btn-label-danger btn-sm btn-bold" onclick="return confirm('Keluar dari admin panel ?');">Logout</button>
+										<button type="submit" class="btn btn-label btn-label-danger btn-sm btn-bold" 
+											onclick="return confirm('Keluar dari panel administrasi ?');">Logout</button>
 									</form>
 								</span>
 							</div>

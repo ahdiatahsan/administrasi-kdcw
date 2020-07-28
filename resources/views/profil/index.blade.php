@@ -50,17 +50,24 @@
                 <div class="kt-widget kt-widget--user-profile-1">
                     <div class="kt-widget__head">
                         <div class="kt-widget__media">
-                            <img src="assets/media/users/100_13.jpg" alt="image">
+                            @if (Storage::exists('public/user/' . Auth::user()->foto))
+								<img class="" alt="Pic" src="{{ Storage::url('public/user/' . Auth::user()->foto) }}" width="1000px" />
+          					@else
+								<img class="" alt="Pic" src="{{ asset('img/user.png') }}" />
+							@endif
                         </div>
                         <div class="kt-widget__content">
                             <div class="kt-widget__section">
                                 <span class="kt-widget__username">
-                                    Nama Lengkap
+                                    {{ Auth::user()->nama }}
                                     <i class="flaticon2-correct kt-font-success"></i>
                                 </span>
                                 <span class="kt-widget__subtitle">
-                                    Jabatan
+                                    {{ Auth::user()->jabatans->nama }}
                                 </span>
+                            </div>
+                            <div class="kt-widget__action">
+                                <span class="btn btn-info btn-sm">KeDai Computerworks</span>
                             </div>
                         </div>
                     </div>
@@ -89,7 +96,7 @@
                                     </span>
                                 </span>
                             </a>
-                            <a href="{{ route('profil_pass') }}" 
+                            <a href="{{ route('profil.edit', Auth::user()->id) }}" 
                                 class="kt-widget__item ">
                                 <span class="kt-widget__section">
                                     <span class="kt-widget__icon">
@@ -141,18 +148,12 @@
                         <div class="kt-portlet__body">
                             <div class="kt-section kt-section--first">
                                 <div class="kt-section__body">
-                                    <div class="row">
-                                        <label class="col-xl-3"></label>
-                                        <div class="col-lg-9 col-xl-6">
-                                            <h3 class="kt-section__title kt-section__title-sm">Contact Info:</h3>
-                                        </div>
-                                    </div>
                                     <div class="form-group row">
                                         <label class="col-xl-3 col-lg-3 col-form-label">No. Registrasi Anggota</label>
                                         <div class="col-lg-9 col-xl-6">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" placeholder="No. Registrasi Anggota"
-                                                    value="123.KD.XVII.19" disabled>
+                                                    value="{{ Auth::user()->noreg }}" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -162,8 +163,8 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                                             class="la la-phone"></i></span></div>
-                                                <input type="text" class="form-control" value="+35278953712"
-                                                    placeholder="Phone" aria-describedby="basic-addon1" disabled>
+                                                <input type="text" class="form-control" value="{{ Auth::user()->kontak }}"
+                                                    placeholder="Phone" aria-describedby="basic-addon1" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -173,8 +174,8 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                                             class="la la-at"></i></span></div>
-                                                <input type="text" class="form-control" value="test@kedai.or.id"
-                                                    placeholder="Email" aria-describedby="basic-addon1" disabled>
+                                                <input type="text" class="form-control" value="{{ Auth::user()->email }}"
+                                                    placeholder="Email" aria-describedby="basic-addon1" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -183,7 +184,7 @@
                                         <div class="col-lg-9 col-xl-6">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" placeholder="Username"
-                                                    value="-" disabled>
+                                                    value="{{ Auth::user()->status_surat }}" readonly>
                                             </div>
                                         </div>
                                     </div>

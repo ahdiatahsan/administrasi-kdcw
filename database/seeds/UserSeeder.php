@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
                 'email' => 'sekum@kedai.or.id', 
                 'password' => bcrypt('12341234'), 
                 'jabatan' => 8,
-                'kontak' => 'Kosong',
+                'kontak' => '081208120812',
                 'alamat' => 'BTP Blok.M No.541',
                 'noreg' => '001.KD.XVIII.19',
                 'status_surat' => 'Kosong',

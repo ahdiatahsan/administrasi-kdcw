@@ -44,7 +44,6 @@ Route::resource('relasi', 'RelasiController');
 Route::resource('keuangan', 'KeuanganController');
 
 //profil
-Route::get('/profil/password', 'ProfilController@password')->name('profil_pass');
 Route::resource('profil', 'ProfilController');
 
 //botman
