@@ -46,6 +46,13 @@
             </div>
         </div>
     </div>
+    <div class="kt-portlet__head kt-portlet__head--lg">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Total Saldo : Rp. {{ $saldo }}
+            </h3>
+        </div>
+    </div>
     <div class="kt-portlet__body">
         <div class="table-responsive">
         <!--begin: Datatable -->

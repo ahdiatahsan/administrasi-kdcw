@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Keuangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
@@ -31,7 +32,13 @@ class KeuanganController extends Controller
                 ->rawColumns(['jenis_dana', 'action'])
                 ->make(true);
         }
-        return view('keuangan.index');
+
+        //saldo
+        $dana_masuk = Keuangan::where('jenis_dana', '=', 'Dana Masuk')->value(DB::raw("SUM(nominal)"));
+        $dana_keluar = Keuangan::where('jenis_dana', '=', 'Dana Keluar')->value(DB::raw("SUM(nominal)"));
+        $saldo = $dana_masuk - $dana_keluar;
+
+        return view('keuangan.index', compact('saldo'));
     }
 
     /**
@@ -72,7 +79,7 @@ class KeuanganController extends Controller
 
         Storage::putFileAs('public/keuangan', $photoFile, $photoName);
 
-        return redirect()->route('keuangan.index')->with('success', 'Data keuangan : ' . $request['keterangan'] . ' telah ditambah.');
+        return redirect()->route('keuangan.index')->with('success', $request['jenis_dana'] . ' : ' . $request['keterangan'] . ' telah ditambah.');
     }
 
     /**
@@ -153,6 +160,6 @@ class KeuanganController extends Controller
             Storage::delete('public/keuangan/' . $keuangan->nota);
         }
 
-        return redirect()->route('keuangan.index')->with('success', 'Data keuangan : ' . $keuangan->keterangan . ' telah dihapus.');
+        return redirect()->route('keuangan.index')->with('success', $keuangan->jenis_dana . ' : ' . $keuangan->keterangan . ' telah dihapus.');
     }
 }

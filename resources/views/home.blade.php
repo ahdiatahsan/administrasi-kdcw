@@ -105,7 +105,7 @@
         <div class="kt-portlet__head-label">
           <span class="kt-portlet__head-icon"><i class="fa fa-dollar-sign"></i></span>
           <a href="{{ route('keuangan.index') }}" class="text-dark">
-            <h3 class="kt-portlet__head-title">Keuangan</h3>
+            <h3 class="kt-portlet__head-title">Saldo Keuangan</h3>
           </a>
         </div>
       </div>
