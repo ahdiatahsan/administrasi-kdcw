@@ -11,7 +11,7 @@
 <div class="kt-subheader__breadcrumbs">
     <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
-    <a href="" class="kt-subheader__breadcrumbs-link">
+    <a href="{{ route('barang.index') }}" class="kt-subheader__breadcrumbs-link">
         Barang </a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
     <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
@@ -32,6 +32,12 @@
                         <h3 class="kt-portlet__head-title">
                             Tambah Data Barang
                         </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <a href="{{ route('barang.index') }}" class="btn btn-clean">
+                            <i class="la la-arrow-left"></i>
+                            <span class="kt-hidden-mobile">Kembali</span>
+                        </a>
                     </div>
                 </div>
 

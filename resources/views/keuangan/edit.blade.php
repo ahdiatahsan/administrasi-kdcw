@@ -32,6 +32,12 @@
                             Ubah Data Keuangan
                         </h3>
                     </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <a href="{{ route('keuangan.index') }}" class="btn btn-clean">
+                            <i class="la la-arrow-left"></i>
+                            <span class="kt-hidden-mobile">Kembali</span>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="kt-portlet__body">
