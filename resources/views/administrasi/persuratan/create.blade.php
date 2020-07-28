@@ -66,7 +66,7 @@
                     <div class="form-group">
                         <label>Tanggal Surat<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="tanggal" id="tanggal" 
-                            placeholder="Pilih tanggal surat" required>
+                            value="{{ old('tanggal') }}" placeholder="Pilih tanggal surat" required readonly>
                     </div>
 
                     <div class="form-group form-group-last">
@@ -104,7 +104,9 @@
 
 <script>
     $(document).ready(function () {
-        $('#tanggal').datepicker();
+        $('#tanggal').datepicker({
+            format: 'dd-mm-yyyy'
+        });
     });
 
     function readURL(input) {

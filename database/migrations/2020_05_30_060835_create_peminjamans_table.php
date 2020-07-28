@@ -18,6 +18,7 @@ class CreatePeminjamansTable extends Migration
             $table->integer('barang_id')->unsigned();
             $table->string('peminjam');
             $table->integer('jumlah');
+            $table->date('tanggal_pinjam');
             $table->string('keterangan');
             $table->integer('created_by')->unsigned();
             $table->timestamps();

@@ -17,7 +17,7 @@ class Rekapan extends Model
         'nama_barang', 
         'peminjam', 
         'jumlah',
-        'tanggal_dipinjam', 
+        'tanggal_pinjam', 
         'tanggal_kembali',
         'keterangan',
         'diterima_oleh'

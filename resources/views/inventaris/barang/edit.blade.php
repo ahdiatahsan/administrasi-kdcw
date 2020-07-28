@@ -58,9 +58,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Jumlah Barang<span class="text-danger">*</span></label>
-                        <input class="form-control @error('old_jumlah') is-invalid @enderror" type="number" name="old_jumlah"
-                            id="old_jumlah" value="{{ $barang->tersedia }}" hidden>
+                        <label>Jumlah Barang Tersedia<span class="text-danger">*</span></label>
                         <input class="form-control @error('jumlah') is-invalid @enderror" type="number" name="jumlah"
                             id="jumlah" value="{{ $barang->tersedia }}" required>
                     </div>

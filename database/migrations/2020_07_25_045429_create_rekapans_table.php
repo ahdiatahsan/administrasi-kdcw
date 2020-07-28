@@ -18,8 +18,8 @@ class CreateRekapansTable extends Migration
             $table->string('nama_barang');
             $table->string('peminjam');
             $table->integer('jumlah');
-            $table->datetime('tanggal_dipinjam');
-            $table->datetime('tanggal_kembali');
+            $table->date('tanggal_pinjam');
+            $table->date('tanggal_kembali');
             $table->string('keterangan');
             $table->string('diterima_oleh');
             $table->timestamps();

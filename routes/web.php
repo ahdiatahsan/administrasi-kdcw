@@ -31,7 +31,9 @@ Route::prefix('administrasi')->group(function () {
 Route::prefix('inventaris')->group(function () {
     Route::resource('barang', 'DatabarangController'); //data-barang
     Route::resource('peminjaman', 'PeminjamanController'); //peminjaman
-    Route::get('/rekapan-peminjaman', 'PeminjamanController@rekap')->name('rekap_peminjaman');
+    Route::get('/kembalikan/{peminjaman}/barang', 'PeminjamanController@kembalikan_view')->name('kembalikan.view'); //rekap
+    Route::post('/kembalikan/{peminjaman}', 'PeminjamanController@kembalikan_store')->name('kembalikan.store'); //rekap
+    Route::get('/rekapan-peminjaman', 'PeminjamanController@rekap')->name('rekap_peminjaman'); //rekap
 });
 
 //relasi

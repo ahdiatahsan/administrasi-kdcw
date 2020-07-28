@@ -71,7 +71,7 @@
                     <div class="form-group">
                         <label>Tanggal Surat<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="tanggal" id="tanggal"
-                            value="{{ date('m/d/Y', strtotime($persuratan->tanggal)) }}" required>
+                            value="{{ date('d-m-Y', strtotime($persuratan->tanggal)) }}" required readonly>
                     </div>
 
                     <div class="form-group form-group-last">
@@ -115,7 +115,9 @@
 
 <script>
   $(document).ready(function () {
-    $('#tanggal').datepicker();
+    $('#tanggal').datepicker({
+        format: 'dd-mm-yyyy'
+    });
   });
 
   function readURL(input) {

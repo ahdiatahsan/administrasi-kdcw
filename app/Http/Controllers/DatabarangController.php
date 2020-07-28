@@ -22,11 +22,15 @@ class DatabarangController extends Controller
             $barangs = Databarang::with('user')->get();
 
             return DataTables::of($barangs)
+                ->editColumn('total', function ($barang) {
+                    $total = Databarang::where('id', '=', $barang->id)->value(DB::raw("SUM(tersedia + dipinjam)"));
+                    return $total;
+                })
                 ->addColumn('action', function ($barang) {
                     return view('inventaris.barang.index_action', compact('barang'))->render();
                 })
                 ->addIndexColumn()
-                ->rawColumns(['action'])
+                ->rawColumns(['total', 'action'])
                 ->make(true);
         }
         return view('inventaris.barang.index');
@@ -109,11 +113,8 @@ class DatabarangController extends Controller
         $request->validate([
             'nama' => 'required|max:255',
             'kondisi' => 'required|max:255',
-            'jumlah' => 'required|numeric|gte:old_jumlah'
-        ],
-            [
-                'jumlah.gte' => 'Jumlah barang yang baru harus lebih besar atau sama dengan jumlah barang sebelumnya.'
-            ]);
+            'jumlah' => 'required|numeric|min:0'
+        ]);
 
         if ($request->file('photo') != null) {
             $request->validate([

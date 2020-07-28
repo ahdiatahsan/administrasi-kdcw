@@ -59,8 +59,9 @@
                     <th>No.</th>
                     <th>Nama Barang</th>
                     <th>Kondisi </th>
-                    <th>Jumlah Total</th>
+                    <th>Jumlah Tersedia</th>
                     <th>Jumlah Dipinjam</th>
+                    <th>Jumlah Total</th>
                     <th>Created_By</th>
                     <th>Actions</th>
                 </tr>
@@ -91,13 +92,14 @@
           {data: 'kondisi', name: 'kondisi'},
           {data: 'tersedia', name: 'tersedia'},
           {data: 'dipinjam', name: 'dipinjam'},
+          {data: 'total', name: 'total'},
           {data: 'user.nama', name: 'user.nama'},
           {data: 'action', name: 'action'},
         ],
         columnDefs: [
           {
             className: 'text-center',
-            targets: [0,6],
+            targets: [0,7],
           },
         ],
         pagingType: "full_numbers"

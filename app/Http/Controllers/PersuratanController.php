@@ -102,7 +102,7 @@ class PersuratanController extends Controller
             'judul' => $request['judul'],
             'jenis_surat' => $request['jenis_surat'],
             'dari_kepada' => $request['dari_kepada'],
-            'tanggal' => Carbon::parse($request['tanggal'])->toDateTimeString(),
+            'tanggal' => Carbon::parse($request['tanggal'])->toDateString(),
             'created_by' => '1',
             'foto' => $photoName
         ]);
@@ -170,7 +170,7 @@ class PersuratanController extends Controller
         $persuratan->judul = $request['judul'];
         $persuratan->jenis_surat = $request['jenis_surat'];
         $persuratan->dari_kepada = $request['dari_kepada'];
-        $persuratan->tanggal = Carbon::parse($request['tanggal'])->toDateTimeString();
+        $persuratan->tanggal = Carbon::parse($request['tanggal'])->toDateString();
         $persuratan->save();
 
         if ($request->file('photo') != null) {

@@ -16,11 +16,11 @@
 <div class="kt-subheader__breadcrumbs">
     <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
-    <a href="{{ route('rekap_peminjaman') }}" class="kt-subheader__breadcrumbs-link">
+    <a href="{{ route('peminjaman.index') }}" class="kt-subheader__breadcrumbs-link">
         Peminjaman </a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
     <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
-        Tabel Rekapan Peminjaman Barang </span>
+        Tabel Data Peminjaman Barang</span>
 </div>
 
 @endsection
@@ -31,11 +31,22 @@
     <div class="kt-portlet__head kt-portlet__head--lg">
         <div class="kt-portlet__head-label">
             <span class="kt-portlet__head-icon">
-                <i class="kt-font-brand fa fa-box-open"></i>
+                <i class="kt-font-brand fa fa-clipboard-list"></i>
             </span>
             <h3 class="kt-portlet__head-title">
-                Tabel Rekapan Peminjaman Barang
+                Tabel Data Peminjaman Barang
             </h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-wrapper">
+                <div class="kt-portlet__head-actions">
+                    &nbsp;
+                    <a href="{{ route("peminjaman.create") }}" class="btn btn-brand btn-elevate btn-icon-sm">
+                        <i class="la la-plus"></i>
+                        Tambah Data
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="kt-portlet__body">
@@ -49,10 +60,10 @@
                     <th>Nama Barang</th>
                     <th>Peminjam </th>
                     <th>Jumlah Dipinjam</th>
-                    <th>Tanggal Dipinjam</th>
-                    <th>Tanggal Dikembalikan</th>
+                    <th>Tanggal Peminjaman</th>
                     <th>Keterangan</th>
-                    <th>Diterima Oleh</th>
+                    <th>Created_By</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
         </table>
@@ -74,21 +85,21 @@
       $('.dataTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('rekap_peminjaman') }}",
+        ajax: "{{ route('peminjaman.index') }}",
         columns: [
           {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-          {data: 'nama_barang', name: 'nama_barang'},
+          {data: 'barang.nama', name: 'barang.nama'},
           {data: 'peminjam', name: 'peminjam'},
           {data: 'jumlah', name: 'jumlah'},
           {data: 'tanggal_pinjam', name: 'tanggal_pinjam'},
-          {data: 'tanggal_kembali', name: 'tanggal_kembali'},
           {data: 'keterangan', name: 'keterangan'},
-          {data: 'diterima_oleh', name: 'diterima_oleh'},
+          {data: 'user.nama', name: 'user.nama'},
+          {data: 'action', name: 'action'},
         ],
         columnDefs: [
           {
             className: 'text-center',
-            targets: [0],
+            targets: [0,7],
           },
         ],
         pagingType: "full_numbers"

@@ -40,13 +40,14 @@
 	$databarang = request()->routeIs('barang*');
 	$peminjaman = request()->routeIs('peminjaman*');
 	$rekappinjam = request()->routeIs('rekap_peminjaman');
+	$kembalibarang = request()->routeIs('kembalikan.view');
 	$keuangan = request()->routeIs('keuangan*');
 	$relasi = request()->routeIs('relasi*');
 	$profil = request()->routeIs('profil*');
 
 	$administrasiGroup = ($persuratan || $anggota || $jabatan);
-	$inventarisGroup = ($databarang || $peminjaman || $rekappinjam);
-	$pinjamGroup = ($peminjaman || $rekappinjam);
+	$inventarisGroup = ($databarang || $peminjaman || $kembalibarang || $rekappinjam);
+	$pinjamGroup = ($peminjaman || $kembalibarang || $rekappinjam);
 
 	@endphp
 	<!--end::php get route -->
@@ -159,8 +160,8 @@
 													class="kt-menu__ver-arrow la la-angle-right"></i></a>
 											<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
 												<ul class="kt-menu__subnav">
-													<li class="kt-menu__item {{ ($peminjaman ? 'kt-menu__item--active' : '') }}" 
-														aria-haspopup="true"><a href="#"
+													<li class="kt-menu__item {{ ($peminjaman || $kembalibarang ? 'kt-menu__item--active' : '') }}" 
+														aria-haspopup="true"><a href="{{ route('peminjaman.index') }}"
 															class="kt-menu__link "><i
 																class="kt-menu__link-icon flaticon-clipboard"></i><span
 																class="kt-menu__link-text">Data Barang
