@@ -37,6 +37,7 @@
                 Tabel Data Jabatan
             </h3>
         </div>
+        @if (Auth::user() && Auth::user()->jabatan == '8')
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
@@ -48,6 +49,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
     
     <div class="kt-portlet__body">

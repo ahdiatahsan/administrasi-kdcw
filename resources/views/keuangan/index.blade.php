@@ -34,6 +34,7 @@
                 Tabel Data Keuangan
             </h3>
         </div>
+        @if (Auth::user() && Auth::user()->jabatan == '9')
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
@@ -45,6 +46,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
     <div class="kt-portlet__head kt-portlet__head--lg">
         <div class="kt-portlet__head-label">
