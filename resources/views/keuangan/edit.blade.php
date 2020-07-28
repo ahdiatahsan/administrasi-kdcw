@@ -11,8 +11,8 @@
 <div class="kt-subheader__breadcrumbs">
     <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
-    <a href="" class="kt-subheader__breadcrumbs-link">
-        Ubah Data Keuangan </a>
+    <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+        Ubah Data Keuangan </span>
 </div>
 
 @endsection

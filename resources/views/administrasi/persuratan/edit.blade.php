@@ -11,7 +11,7 @@
 <div class="kt-subheader__breadcrumbs">
     <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
-    <a href="" class="kt-subheader__breadcrumbs-link">
+    <a href="{{ route('persuratan.index') }}" class="kt-subheader__breadcrumbs-link">
         Persuratan </a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
     <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">

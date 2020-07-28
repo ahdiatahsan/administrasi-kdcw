@@ -9,10 +9,10 @@
 </h3>
 <span class="kt-subheader__separator kt-hidden"></span>
 <div class="kt-subheader__breadcrumbs">
-    <a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+    <a href="" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
     <span class="kt-subheader__breadcrumbs-separator"></span>
-    <a href="" class="kt-subheader__breadcrumbs-link">
-        Tambah Data Keuangan </a>
+    <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">
+        Tambah Data Keuangan </span>
 </div>
 
 @endsection
