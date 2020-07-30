@@ -229,11 +229,8 @@
 								@endif
 								&nbsp; &nbsp;
 								<span class="kt-header__topbar-welcome">
-									<form id="logout-form" action="{{ route('logout') }}" method="POST">
-										@csrf
-										<button type="submit" class="btn btn-label btn-label-danger btn-sm btn-bold" 
-											onclick="return confirm('Keluar dari panel administrasi ?');">Logout</button>
-									</form>
+									<button type="button" class="btn btn-label btn-label-danger btn-sm btn-bold" data-toggle="modal"
+										data-target="#logout_modal">Logout</button>
 								</span>
 							</div>
 						</div>
@@ -242,6 +239,26 @@
 					</div>
 
 					<!-- end:: Header Topbar -->
+				</div>
+
+				<!-- Modal -->
+				<div class="modal fade" id="logout_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Logout Akun ?</h5>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-clean" data-dismiss="modal">
+									<i class="fa fa-reply"></i>Kembali</button>
+								<form id="logout-form" action="{{ route('logout') }}" method="POST">
+									@csrf
+									<button type="submit" class="btn btn-danger">
+										<i class="fa fa-sign-out-alt"></i>Logout</button>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<!-- end:: Header -->
