@@ -28,7 +28,7 @@ Route::prefix('administrasi')->group(function () {
     Route::get('table_surat_keluar', 'PersuratanController@surat_keluar')->name('surat_keluar');
 });
 
-//adminstrasi
+//inventaris
 Route::prefix('inventaris')->group(function () {
     Route::resource('barang', 'DatabarangController'); //data-barang
     Route::resource('peminjaman', 'PeminjamanController'); //peminjaman
@@ -37,11 +37,11 @@ Route::prefix('inventaris')->group(function () {
     Route::get('/rekapan-peminjaman', 'PeminjamanController@rekap')->name('rekap_peminjaman'); //rekap
 });
 
-//relasi
-Route::resource('relasi', 'RelasiController');
-
 //keuangan
 Route::resource('keuangan', 'KeuanganController');
+
+//relasi
+Route::resource('relasi', 'RelasiController');
 
 //profil
 Route::resource('profil', 'ProfilController');
