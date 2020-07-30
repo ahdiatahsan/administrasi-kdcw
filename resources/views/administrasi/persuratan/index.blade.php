@@ -112,6 +112,9 @@
 
 @section('js')
 <script>
+    var jabatan = "{{ Auth::user()->jabatan }}";
+    var showColumn = jabatan == 8 ? true:false;
+
     $(document).ready(function () {
       $('.suratMasuk').DataTable({
         processing: true,
@@ -130,6 +133,10 @@
           {
             className: 'text-center',
             targets: [0,6],
+          },
+          {
+            visible : showColumn,
+            targets: [6],
           },
         ],
         pagingType: "full_numbers"
@@ -151,6 +158,10 @@
           {
             className: 'text-center',
             targets: [0,6],
+          },
+          {
+            visible : showColumn,
+            targets: [6],
           },
         ],
         pagingType: "full_numbers"
