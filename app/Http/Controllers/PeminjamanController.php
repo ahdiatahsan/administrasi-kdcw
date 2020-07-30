@@ -6,7 +6,7 @@ use App\Databarang;
 use App\Peminjaman;
 use App\Rekapan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use Yajra\DataTables\DataTables;
 
@@ -104,13 +104,15 @@ class PeminjamanController extends Controller
         $update_barang->dipinjam = $update_barang->dipinjam + $request->jumlah;
         $update_barang->save();
 
+        $created_by = Auth::user()->id;
+
         Peminjaman::create([
             'barang_id' => $request['barang'],
             'peminjam' => $request['peminjam'],
             'jumlah' => $request['jumlah'],
             'tanggal_pinjam' => Carbon::parse($request['tanggal'])->toDateString(),
             'keterangan' => $request['keterangan'],
-            'created_by' => '1'
+            'created_by' => $created_by
         ]);
 
         return redirect()->route('peminjaman.index')->with('success', 'Peminjaman barang ' . $update_barang->nama . ' telah ditambah.');

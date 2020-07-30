@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Keuangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -76,6 +77,8 @@ class KeuanganController extends Controller
             'photo' => 'required|file|max:2048|mimes:jpeg,jpg,png,webp'
         ]);
 
+        $created_by = Auth::user()->id;
+
         $photoFile = $request->file('photo');
         $photoName = Str::slug($request['keterangan']) . '.' . $photoFile->getClientOriginalExtension();
 
@@ -83,7 +86,7 @@ class KeuanganController extends Controller
             'keterangan' => $request['keterangan'],
             'nominal' => $request['nominal'],
             'jenis_dana' => $request['jenis_dana'],
-            'created_by' => '1',
+            'created_by' => $created_by,
             'nota' => $photoName
         ]);
 

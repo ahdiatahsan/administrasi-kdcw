@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Databarang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -71,6 +72,8 @@ class DatabarangController extends Controller
             'photo' => 'required|file|max:1024|mimes:jpeg,jpg,png,webp'
         ]);
 
+        $created_by = Auth::user()->id;
+
         $photoFile = $request->file('photo');
         $photoName = Str::slug($request['nama']) . '.' . $photoFile->getClientOriginalExtension();
 
@@ -79,7 +82,7 @@ class DatabarangController extends Controller
             'kondisi' => $request['kondisi'],
             'tersedia' => $request['jumlah'],
             'dipinjam' => '0',
-            'created_by' => '1',
+            'created_by' => $created_by,
             'foto' => $photoName
         ]);
 

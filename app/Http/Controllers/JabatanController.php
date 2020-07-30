@@ -62,8 +62,7 @@ class JabatanController extends Controller
         ]);
 
         Jabatan::create([
-            'nama' => $request['nama'],
-            'created_by' => '1'
+            'nama' => $request['nama']
         ]);
 
         return redirect()->route('jabatan.index')->with('success', 'Jabatan ' . $request['nama'] . ' telah ditambah.');

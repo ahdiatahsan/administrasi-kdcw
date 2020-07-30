@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Relasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
@@ -68,6 +69,8 @@ class RelasiController extends Controller
             'photo' => 'required|file|max:1024|mimes:jpeg,jpg,png,webp'
         ]);
 
+        $created_by = Auth::user()->id;
+
         $photoFile = $request->file('photo');
         $photoName = Str::slug($request['nama']) . '.' . $photoFile->getClientOriginalExtension();
 
@@ -77,7 +80,7 @@ class RelasiController extends Controller
             'kontak' => $request['kontak'],
             'alamat' => $request['alamat'],
             'keterangan' => $request['keterangan'],
-            'created_by' => '1',
+            'created_by' => $created_by,
             'logo' => $photoName
         ]);
 

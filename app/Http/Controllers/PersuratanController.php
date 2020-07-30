@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Persuratan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
@@ -104,6 +105,8 @@ class PersuratanController extends Controller
             'photo' => 'required|file|max:1024|mimes:jpeg,jpg,png,webp'
         ]);
 
+        $created_by = Auth::user()->id;
+
         $photoFile = $request->file('photo');
         $photoName = Str::slug($request['no_surat']) . '.' . $photoFile->getClientOriginalExtension();
 
@@ -113,7 +116,7 @@ class PersuratanController extends Controller
             'jenis_surat' => $request['jenis_surat'],
             'dari_kepada' => $request['dari_kepada'],
             'tanggal' => Carbon::parse($request['tanggal'])->toDateString(),
-            'created_by' => '1',
+            'created_by' => $created_by,
             'foto' => $photoName
         ]);
 

@@ -75,7 +75,7 @@ class JabatanSeeder extends Seeder
                 'updated_at' => now()
                 ],
                 [
-                'nama' => 'Staf Public & Relation&R',
+                'nama' => 'Staf Public & Relation',
                 'created_at' => now(),
                 'updated_at' => now()
                 ],
