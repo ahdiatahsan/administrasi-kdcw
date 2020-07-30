@@ -65,11 +65,11 @@ class UserController extends Controller
     {
         $request->validate([
             'nama' => 'required|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:8|confirmed',
             'jabatan' => 'required|max:255',
             'kontak' => 'required|max:255',
-            'noreg' => 'required|max:255',
+            'noreg' => 'required|max:255|unique:users,noreg',
             'alamat' => 'required|max:255',
             'surat' => 'required|max:255',
             'photo' => 'required|file|max:2048|mimes:jpeg,jpg,png,webp'
@@ -132,11 +132,11 @@ class UserController extends Controller
     {
         $request->validate([
             'nama' => 'required|max:255',
-            'email' => 'required|email|max:255',
+            'email' => "required|email|max:255|unique:users,email,$user->id",
             'jabatan' => 'required|max:255',
             'kontak' => 'required|max:255',
             'alamat' => 'required|max:255',
-            'noreg' => 'required|max:255',
+            'noreg' => "required|max:255|unique:users,noreg,$user->id",
             'surat' => 'required|max:255'
         ]);
 

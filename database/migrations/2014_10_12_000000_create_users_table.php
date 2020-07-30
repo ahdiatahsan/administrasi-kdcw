@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->integer('jabatan')->unsigned();
             $table->string('kontak');
             $table->string('alamat');
-            $table->string('noreg');
+            $table->string('noreg')->unique();
             $table->string('status_surat')->nullable();
             $table->string('foto')->nullable();
             $table->rememberToken();
