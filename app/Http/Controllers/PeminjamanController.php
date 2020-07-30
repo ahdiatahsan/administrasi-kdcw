@@ -216,6 +216,8 @@ class PeminjamanController extends Controller
         $update_barang->dipinjam = $update_barang->dipinjam - $request->jumlah;
         $update_barang->save();
 
+        $accepted_by = Auth::user()->id;
+
         Rekapan::create([
             'nama_barang' => $request['nama'],
             'peminjam' => $request['peminjam'],
@@ -223,7 +225,7 @@ class PeminjamanController extends Controller
             'tanggal_pinjam' => Carbon::parse($request['tanggal_pinjam'])->toDateString(),
             'tanggal_kembali' => Carbon::parse($request['tanggal_kembali'])->toDateString(),
             'keterangan' => $request['keterangan'],
-            'diterima_oleh' => '1'
+            'diterima_oleh' => $accepted_by
         ]);
 
         $peminjaman->delete();

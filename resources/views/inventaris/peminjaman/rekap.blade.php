@@ -31,7 +31,7 @@
     <div class="kt-portlet__head kt-portlet__head--lg">
         <div class="kt-portlet__head-label">
             <span class="kt-portlet__head-icon">
-                <i class="kt-font-brand fa fa-box-open"></i>
+                <i class="kt-font-brand fa fa-clipboard-check"></i>
             </span>
             <h3 class="kt-portlet__head-title">
                 Tabel Rekapan Peminjaman Barang
