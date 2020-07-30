@@ -104,7 +104,7 @@ class PersuratanController extends Controller
             'jenis_surat' => 'required|max:255',
             'dari_kepada' => 'required|max:255',
             'tanggal' => 'required|max:255',
-            'photo' => 'required|file|max:1024|mimes:jpeg,jpg,png,webp'
+            'photo' => 'required|file|max:2048|mimes:jpeg,jpg,png,webp'
         ]);
 
         $created_by = Auth::user()->id;
@@ -168,7 +168,7 @@ class PersuratanController extends Controller
 
         if ($request->file('photo') != null) {
             $request->validate([
-                'photo' => 'required|file|max:1024|mimes:jpeg,jpg,png,webp'
+                'photo' => 'required|file|max:2048|mimes:jpeg,jpg,png,webp'
             ]);
 
             if (Storage::exists('public/administrasi/' . $persuratan->foto)) {

@@ -80,7 +80,7 @@
                         <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo"
                             id="photo" required>
                         <small class="text-danger">Format foto yang diterima adalah jpeg, jpg, png, webp dengan ukuran
-                            maksimal 1 MB.</small>
+                            maksimal 2 MB.</small>
                         <br><br><br>
                         <div class="text-center">
                             <img class="img-fluid rounded text-center" src="{{ asset('img/image.png') }}"
