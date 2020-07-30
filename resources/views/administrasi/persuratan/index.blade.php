@@ -112,10 +112,10 @@
 
 @section('js')
 <script>
-    var jabatan = "{{ Auth::user()->jabatan }}";
-    var showColumn = jabatan == 8 ? true:false;
-
     $(document).ready(function () {
+      var jabatan = "{{ Auth::user()->jabatan }}";
+      var showColumn = jabatan == 8 ? true:false;
+      
       $('.suratMasuk').DataTable({
         processing: true,
         serverSide: true,

@@ -20,6 +20,8 @@ class PersuratanController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware('sekretaris')->except('index', 'show', 'surat_masuk', 'surat_keluar');
     }
     
     /**

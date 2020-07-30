@@ -20,6 +20,8 @@ class KeuanganController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware('bendahara')->except('index', 'show');
     }
     
     /**

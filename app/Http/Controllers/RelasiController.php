@@ -19,6 +19,8 @@ class RelasiController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware('publicRelation')->except('index', 'show');
     }
     
     /**

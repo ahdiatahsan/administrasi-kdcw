@@ -17,6 +17,8 @@ class ProfilController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware('profil')->except('index');
     }
     
     /**
