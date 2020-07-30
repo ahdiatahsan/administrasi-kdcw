@@ -11,9 +11,11 @@
             style="display: none; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-32px, 27px, 0px);"
             x-placement="bottom-end">
             <a class="dropdown-item" href="{{ route('anggota.edit', $user->id) }}"><i class="la la-edit"></i>Ubah</a>
+            @if (Auth::user() && Auth::user()->id != $user->id)
             <button type="button" class="dropdown-item" data-toggle="modal" data-target="#delete_modal-{{ $user->id }}">
                 <i class="la la-trash"></i>Hapus
             </button>
+            @endif
         </div>
     </span>
 

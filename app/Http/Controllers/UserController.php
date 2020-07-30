@@ -179,12 +179,24 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+       $barangCount = $user->databarang()->count();
+       $keuanganCount = $user->keuangan()->count();
+       $pinjamCount = $user->peminjaman()->count();
+       $relasiCount = $user->relasi()->count();
+       $suratCount = $user->persuratan()->count();
+
+        if ($barangCount || $keuanganCount || $pinjamCount || $relasiCount || $suratCount) {
+            return redirect()->route('anggota.index')->with('constraint_error', 
+                'Hapus terlebih dahulu semua data yang pernah dibuat oleh akun ' . $user->nama . ' ( '. $user->noreg .' )' 
+                . ' pada fitur lain seperti persuratan atau relasi, agar dapat menghapus akun.');
+        }
+
         $user->delete();
 
         if (Storage::exists('public/user/' . $user->foto)) {
             Storage::delete('public/user/' . $user->foto);
         }
-
+        
         return redirect()->route('anggota.index')->with('success', 'Data anggota ' . $user->nama . ' ( '. $user->noreg .' )' .' telah dihapus.');
     }
 }

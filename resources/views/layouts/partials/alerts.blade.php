@@ -54,6 +54,27 @@
 </div>
 @endif
 
+@if ($message = session()->get('constraint_error'))
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="alert alert-solid-danger alert-bold fade show kt-margin-t-5 kt-margin-b-25" role="alert">
+            <div class="alert-icon"><i class="fa fa-exclamation-triangle"></i></div>
+            <div class="alert-text">
+                <h4 class="alert-heading">Terjadi kesalahan !</h4>
+                <p class="mb-0">
+                    {{ $message }}
+                </p>
+            </div>
+            <div class="alert-close">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"><i class="la la-close"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
 @if ($errors->any())
 <div class="row justify-content-center">
     <div class="{{ request()->routeIs('profil*') ? 'col-12' : 'col-lg-10 col-md-10 col-sm-12' }}">
