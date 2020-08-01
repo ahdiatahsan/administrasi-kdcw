@@ -92,6 +92,9 @@
         processing: true,
         serverSide: true,
         ajax: "{{ route('anggota.index') }}",
+        order: [
+            [2, 'asc']
+        ],
         columns: [
           {data: 'DT_RowIndex', name: 'DT_RowIndex'},
           {data: 'nama', name: 'nama'},
