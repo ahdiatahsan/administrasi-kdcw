@@ -18,15 +18,152 @@ class BotManController extends Controller
     {
         $botman = app('botman');
 
-        $botman->hears('/start|help|start|info|test' , function ($bot) {
+        $botman->hears('/start|help|start|info' , function ($bot) {
             $bot->reply(
-            <<<EOT
-            Hai saya adalah AdministrasiKDCW Chatbot, silahkan bertanya seputar administrasi di KeDai Computerworks dengan cara mengirim perintah seperti di bawah ini :
-            
-            /test [****]
-            Untuk menemukan informasi.
+    <<<EOT
+    Hai saya adalah AdministrasiKDCW Chatbot, silahkan bertanya seputar administrasi di KeDai Computerworks dengan cara mengirim perintah seperti di bawah ini :
+                
+    /surat [nomor/judul surat]
+    Untuk menemukan informasi surat.
+    
+    /anggota [NRA/nama anggota]
+    Untuk menemukan informasi anggota.
+    
+    /barang [nama barang]
+    Untuk menemukan informasi barang.
+    
+    /dana [keterangan dana]
+    Untuk menemukan informasi dana.
+    
+    /relasi [nama instansi]
+    Untuk menemukan informasi relasi.
 EOT
-        );
+            );
+        });
+        
+        //Perintah menampilkan surat
+        $botman->hears('/surat {hear}', function ($bot, $hear) {
+            $surat = DB::table('persuratans')
+                ->where('no_surat', 'like', '%'.$hear.'%')
+                ->orWhere('judul', 'like', '%'.$hear.'%')
+                ->first();
+
+            $bot->reply(
+<<<EOT
+INFORMASI SURAT
+No. Surat : $surat->no_surat
+Judul Surat : $surat->judul
+Jenis Surat : $surat->jenis_surat
+Dari/Kepada : $surat->dari_kepada
+Tgl. Surat : $surat->tanggal
+EOT
+            );
+            
+            $attachment = new File(asset('storage/administrasi/'.$surat->foto), [
+                'custom_payload' => true,
+            ]);
+            $message = OutgoingMessage::create($surat->foto)->withAttachment($attachment);
+            $bot->reply($message);
+        });
+        
+        //Perintah menampilkan anggota
+        $botman->hears('/anggota {hear}', function ($bot, $hear) {
+            $anggota = DB::table('users')
+                ->join('jabatans', 'users.jabatan', '=', 'jabatans.id')
+                ->select([
+                    'users.nama as nama',
+                    'users.noreg as noreg',
+                    'users.email as email',
+                    'users.kontak as kontak',
+                    'users.alamat as alamat',
+                    'users.status_surat as status_surat',
+                    'jabatans.nama as jabatan',
+                ])
+                ->where('users.nama', 'like', '%'.$hear.'%')
+                ->orWhere('users.noreg', 'like', '%'.$hear.'%')
+                ->first();
+
+            $bot->reply(
+<<<EOT
+INFORMASI Anggota
+Nama Lengkap : $anggota->nama
+NRA : $anggota->noreg
+Jabatan : $anggota->jabatan
+Email : $anggota->email
+Kontak : $anggota->kontak
+Alamat : $anggota->alamat
+Status Surat : $anggota->status_surat
+EOT
+            );
+        });
+        
+        //Perintah menampilkan barang
+        $botman->hears('/barang {hear}', function ($bot, $hear) {
+            $barang = DB::table('databarangs')
+                ->where('nama', 'like', '%'.$hear.'%')
+                ->first();
+
+            $bot->reply(
+<<<EOT
+INFORMASI BARANG
+Nama Barang : $barang->nama
+Kondisi Barang : $barang->kondisi
+Jumlah Tersedia : $barang->tersedia
+Jumlah Dipinjam : $barang->dipinjam
+EOT
+            );
+            
+            $attachment = new File(asset('storage/inventaris/'.$barang->foto), [
+                'custom_payload' => true,
+            ]);
+            $message = OutgoingMessage::create($barang->foto)->withAttachment($attachment);
+            $bot->reply($message);
+        });
+        
+        //Perintah menampilkan dana
+        $botman->hears('/dana {hear}', function ($bot, $hear) {
+            $dana = DB::table('keuangans')
+                ->where('keterangan', 'like', '%'.$hear.'%')
+                ->first();
+
+            $bot->reply(
+<<<EOT
+INFORMASI DANA
+Keterangan : $dana->keterangan
+Jenis Dana : $dana->jenis_dana
+Nominal Dana : Rp. $dana->nominal
+EOT
+            );
+            
+            $attachment = new File(asset('storage/keuangan/'.$dana->nota), [
+                'custom_payload' => true,
+            ]);
+            $message = OutgoingMessage::create($dana->nota)->withAttachment($attachment);
+            $bot->reply($message);
+        });
+        
+        //Perintah menampilkan relasi
+        $botman->hears('/relasi {hear}', function ($bot, $hear) {
+            $relasi = DB::table('relasis')
+                ->where('nama', 'like', '%'.$hear.'%')
+                ->first();
+
+            $bot->reply(
+<<<EOT
+INFORMASI RELASI
+Nama Instansi : $relasi->nama
+Alamat : $relasi->alamat
+Email : $relasi->email
+Kontak : $relasi->kontak
+Keterangan : $relasi->keterangan
+EOT
+            );
+            
+            $attachment = new File(asset('storage/relasi/'.$relasi->logo), [
+                'custom_payload' => true,
+            ]);
+            $message = OutgoingMessage::create($relasi->logo)->withAttachment($attachment);
+            $bot->reply($message);
         });
 
         //Fallback Error
