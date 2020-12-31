@@ -18,7 +18,7 @@ class ProfilController extends Controller
     {
         $this->middleware('auth');
 
-        $this->middleware('profil')->except('index');
+        $this->middleware('profil')->except('index','ubah');
     }
     
     /**
@@ -29,6 +29,27 @@ class ProfilController extends Controller
     public function index()
     {
         return view('profil.index');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function ubah(Request $request, $id)
+    {
+        $profil = User::find($id);
+        $request->validate([
+            'kontak' => 'required|max:255',
+            'email' => "required|email|max:255|unique:users,email,$profil->id"
+        ]);
+
+        $profil->email = $request['email'];
+        $profil->kontak = $request['kontak'];
+        $profil->save();
+        
+        return redirect()->route('profil.index')->with('success', 'Informasi pribadi Anda telah diubah.');
     }
 
     /**

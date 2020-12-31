@@ -45,6 +45,7 @@ Route::resource('relasi', 'RelasiController');
 
 //profil
 Route::resource('profil', 'ProfilController');
+Route::patch('/profil/ubah/{id}', 'ProfilController@ubah')->name('profil.ubah'); //ubah informasi pribadi
 
 //botman
 Route::match(['get', 'post'], '/botman', 'BotManController@handle');

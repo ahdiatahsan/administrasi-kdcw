@@ -141,10 +141,13 @@
                 <div class="kt-portlet">
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
-                            <h3 class="kt-portlet__head-title">Informasi Pribadi Anda <small>-</small></h3>
+                            <h3 class="kt-portlet__head-title">Informasi Pribadi Anda</h3>
                         </div>
                     </div>
-                    <form class="kt-form kt-form--label-right">
+                    <form class="kt-form kt-form--label-right" autocomplete="off"
+                        action="{{ route('profil.ubah', Auth::user()->id) }}" method="POST">
+                        @csrf
+                        @method('PATCH')
                         <div class="kt-portlet__body">
                             <div class="kt-section kt-section--first">
                                 <div class="kt-section__body">
@@ -163,8 +166,8 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                                             class="la la-phone"></i></span></div>
-                                                <input type="text" class="form-control" value="{{ Auth::user()->kontak }}"
-                                                    placeholder="Phone" aria-describedby="basic-addon1" readonly>
+                                                <input type="tel" name="kontak" class="form-control" value="{{ Auth::user()->kontak }}"
+                                                    placeholder="Phone" aria-describedby="basic-addon1">
                                             </div>
                                         </div>
                                     </div>
@@ -174,8 +177,8 @@
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text"><i
                                                             class="la la-at"></i></span></div>
-                                                <input type="text" class="form-control" value="{{ Auth::user()->email }}"
-                                                    placeholder="Email" aria-describedby="basic-addon1" readonly>
+                                                <input type="email" name="email" class="form-control" value="{{ Auth::user()->email }}"
+                                                    placeholder="Email" aria-describedby="basic-addon1">
                                             </div>
                                         </div>
                                     </div>
@@ -187,6 +190,18 @@
                                                     value="{{ Auth::user()->status_surat }}" readonly>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__foot">
+                            <div class="kt-form__actions">
+                                <div class="row">
+                                    <div class="col-lg-3 col-xl-3">
+                                    </div>
+                                    <div class="col-lg-9 col-xl-9">
+                                        <button type="submit" class="btn btn-brand btn-bold">Simpan</button>&nbsp;
+                                        <button type="reset" class="btn btn-secondary">Reset</button>
                                     </div>
                                 </div>
                             </div>
