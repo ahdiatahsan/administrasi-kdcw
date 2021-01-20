@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Conversations\ExampleConversation;
 use BotMan\BotMan\BotMan;
-use BotMan\BotMan\Messages\Attachments\File;
+use BotMan\BotMan\Messages\Attachments\Image;
 use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +19,7 @@ class BotManController extends Controller
         $botman = app('botman');
 
         $botman->hears('/start|help|start|info' , function ($bot) {
+            $bot->typesAndWaits(2);
             $bot->reply(
     <<<EOT
     Hai saya adalah AdministrasiKDCW Chatbot, silahkan bertanya seputar administrasi di KeDai Computerworks dengan cara mengirim perintah seperti di bawah ini :
@@ -47,8 +48,19 @@ EOT
                 ->where('no_surat', 'like', '%'.$hear.'%')
                 ->orWhere('judul', 'like', '%'.$hear.'%')
                 ->first();
-
-            $bot->reply(
+            
+            // $attachment = new Image(asset('storage/administrasi/'.$surat->foto), [
+            //     'custom_payload' => true,
+            // ]);
+            // $message = OutgoingMessage::create($surat->foto)->withAttachment($attachment);
+            
+            $bot->typesAndWaits(2);
+            
+            if (!$surat) {
+                $bot->reply('Maaf, data yang Anda cari tidak ditemukan!');
+            }
+            else {
+                $bot->reply(
 <<<EOT
 INFORMASI SURAT
 No. Surat : $surat->no_surat
@@ -57,13 +69,11 @@ Jenis Surat : $surat->jenis_surat
 Dari/Kepada : $surat->dari_kepada
 Tgl. Surat : $surat->tanggal
 EOT
-            );
+                );
             
-            $attachment = new File(asset('storage/administrasi/'.$surat->foto), [
-                'custom_payload' => true,
-            ]);
-            $message = OutgoingMessage::create($surat->foto)->withAttachment($attachment);
-            $bot->reply($message);
+                // $bot->reply($message);  
+                $bot->reply(asset('storage/administrasi/'.$surat->foto));
+            }
         });
         
         //Perintah menampilkan anggota
@@ -82,10 +92,16 @@ EOT
                 ->where('users.nama', 'like', '%'.$hear.'%')
                 ->orWhere('users.noreg', 'like', '%'.$hear.'%')
                 ->first();
-
-            $bot->reply(
+            
+            $bot->typesAndWaits(2);
+            
+            if (!$anggota) {
+                $bot->reply('Maaf, data yang Anda cari tidak ditemukan!');
+            }
+            else {
+                $bot->reply(
 <<<EOT
-INFORMASI Anggota
+INFORMASI ANGGOTA
 Nama Lengkap : $anggota->nama
 NRA : $anggota->noreg
 Jabatan : $anggota->jabatan
@@ -94,7 +110,8 @@ Kontak : $anggota->kontak
 Alamat : $anggota->alamat
 Status Surat : $anggota->status_surat
 EOT
-            );
+                );
+            }
         });
         
         //Perintah menampilkan barang
@@ -102,8 +119,19 @@ EOT
             $barang = DB::table('databarangs')
                 ->where('nama', 'like', '%'.$hear.'%')
                 ->first();
-
-            $bot->reply(
+            
+            // $attachment = new Image(asset('storage/inventaris/'.$barang->foto), [
+            //     'custom_payload' => true,
+            // ]);
+            // $message = OutgoingMessage::create($barang->foto)->withAttachment($attachment);
+            
+            $bot->typesAndWaits(2);
+            
+            if (!$barang) {
+                $bot->reply('Maaf, data yang Anda cari tidak ditemukan!');
+            }
+            else {
+                $bot->reply(
 <<<EOT
 INFORMASI BARANG
 Nama Barang : $barang->nama
@@ -111,13 +139,11 @@ Kondisi Barang : $barang->kondisi
 Jumlah Tersedia : $barang->tersedia
 Jumlah Dipinjam : $barang->dipinjam
 EOT
-            );
-            
-            $attachment = new File(asset('storage/inventaris/'.$barang->foto), [
-                'custom_payload' => true,
-            ]);
-            $message = OutgoingMessage::create($barang->foto)->withAttachment($attachment);
-            $bot->reply($message);
+                );
+                
+                // $bot->reply($message);
+                $bot->reply(asset('storage/inventaris/'.$barang->foto));
+            }
         });
         
         //Perintah menampilkan dana
@@ -126,20 +152,29 @@ EOT
                 ->where('keterangan', 'like', '%'.$hear.'%')
                 ->first();
 
-            $bot->reply(
+            // $attachment = new Image(asset('storage/keuangan/'.$dana->nota), [
+            //     'custom_payload' => true,
+            // ]);
+            // $message = OutgoingMessage::create($dana->nota)->withAttachment($attachment);
+            
+            $bot->typesAndWaits(2);
+            
+            if (!$dana) {
+                $bot->reply('Maaf, data yang Anda cari tidak ditemukan!');
+            }
+            else {
+                $bot->reply(
 <<<EOT
 INFORMASI DANA
 Keterangan : $dana->keterangan
 Jenis Dana : $dana->jenis_dana
 Nominal Dana : Rp. $dana->nominal
 EOT
-            );
+                );
             
-            $attachment = new File(asset('storage/keuangan/'.$dana->nota), [
-                'custom_payload' => true,
-            ]);
-            $message = OutgoingMessage::create($dana->nota)->withAttachment($attachment);
-            $bot->reply($message);
+                // $bot->reply($message); 
+                $bot->reply(asset('storage/keuangan/'.$dana->nota));
+            }
         });
         
         //Perintah menampilkan relasi
@@ -147,8 +182,19 @@ EOT
             $relasi = DB::table('relasis')
                 ->where('nama', 'like', '%'.$hear.'%')
                 ->first();
-
-            $bot->reply(
+            
+            // $attachment = new Image(asset('storage/relasi/'.$relasi->logo), [
+            //     'custom_payload' => true,
+            // ]);
+            // $message = OutgoingMessage::create($relasi->logo)->withAttachment($attachment);
+            
+            $bot->typesAndWaits(2);
+            
+            if (!$relasi) {
+                $bot->reply('Maaf, data yang Anda cari tidak ditemukan!');
+            }
+            else {
+                $bot->reply(
 <<<EOT
 INFORMASI RELASI
 Nama Instansi : $relasi->nama
@@ -157,18 +203,16 @@ Email : $relasi->email
 Kontak : $relasi->kontak
 Keterangan : $relasi->keterangan
 EOT
-            );
+                );
             
-            $attachment = new File(asset('storage/relasi/'.$relasi->logo), [
-                'custom_payload' => true,
-            ]);
-            $message = OutgoingMessage::create($relasi->logo)->withAttachment($attachment);
-            $bot->reply($message);
+                // $bot->reply($message);
+                $bot->reply(asset('storage/relasi/'.$relasi->logo));
+            }
         });
 
         //Fallback Error
         $botman->fallback(function($bot) {
-            $bot->reply('Perintah yang anda input salah !, untuk mengetahui perintah yang ada silakan masukkan perintah /start atau help');
+            $bot->reply('Perintah yang anda input salah!, untuk mengetahui perintah yang ada silakan masukkan perintah /start atau help');
         });
 
         $botman->listen();
