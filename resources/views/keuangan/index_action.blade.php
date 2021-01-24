@@ -1,3 +1,4 @@
+@if (Auth::user() && Auth::user()->jabatan == '9')
 <form action="{{ route('keuangan.destroy', $keuangan->id) }}" method="POST">
     @csrf
     @method('DELETE')
@@ -39,3 +40,8 @@
     </div>
 
 </form>
+@elseif (Auth::user() && Auth::user()->jabatan != '9')
+    <a href="{{ route('keuangan.show', $keuangan->id) }}" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Detail">
+        <i class="fa fa-search text-brand"></i>
+    </a>
+@endif

@@ -1,7 +1,8 @@
+@if (Auth::user() && Auth::user()->jabatan == '8')
 <form action="{{ route('anggota.destroy', $user->id) }}" method="POST">
     @csrf
     @method('DELETE')
-    
+
     <span class="dropdown">
         <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="dropdown" aria-expanded="false"
             title="Menu">
@@ -41,3 +42,8 @@
     </div>
 
 </form>
+@elseif (Auth::user() && Auth::user()->jabatan != '8')
+    <a href="{{ route('anggota.show', $user->id) }}" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Detail">
+        <i class="fa fa-search text-brand"></i>
+    </a>
+@endif

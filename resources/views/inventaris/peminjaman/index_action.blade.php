@@ -1,3 +1,4 @@
+@if (Auth::user() && Auth::user()->jabatan == '14' || Auth::user()->jabatan == '15')
 <form action="{{ route('peminjaman.destroy', $peminjaman->id) }}" method="POST">
     @csrf
     @method('DELETE')
@@ -40,3 +41,8 @@
     </div>
 
 </form>
+@elseif (Auth::user() && Auth::user()->jabatan != '14' || Auth::user()->jabatan != '15')
+    <a href="{{ route('peminjaman.show', $peminjaman->id) }}" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Detail">
+        <i class="fa fa-search text-brand"></i>
+    </a>
+@endif

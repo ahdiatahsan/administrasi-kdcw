@@ -2,9 +2,9 @@
     @csrf
     @method('DELETE')
 
-    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#delete_modal-{{ $jabatan->id }}">
-        <i class="la la-trash"></i>Hapus
-    </button>
+    <a type="button" data-toggle="modal" data-target="#delete_modal-{{ $jabatan->id }}" class="btn btn-sm btn-icon btn-icon-sm btn-elevate btn-elevate-air" title="Hapus">
+        <i class="fa fa-trash text-danger"></i>
+    </a>
 
     <a href="{{ route('jabatan.edit', $jabatan->id) }}" class="btn btn-sm btn-icon btn-icon-sm btn-elevate btn-elevate-air" title="Ubah">
         <i class="fa fa-edit text-warning"></i>

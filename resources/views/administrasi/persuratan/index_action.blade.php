@@ -1,7 +1,8 @@
+@if (Auth::user() && Auth::user()->jabatan == '8')
 <form action="{{ route('persuratan.destroy', $persuratan->id) }}" method="POST">
     @csrf
     @method('DELETE')
-    
+
     <span class="dropdown">
         <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="dropdown" aria-expanded="false"
             title="Menu">
@@ -10,14 +11,17 @@
         <div class="dropdown-menu dropdown-menu-right"
             style="display: none; position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-32px, 27px, 0px);"
             x-placement="bottom-end">
-            <a class="dropdown-item" href="{{ route('persuratan.edit', $persuratan->id) }}"><i class="la la-edit"></i>Ubah</a>
-            <button type="button" class="dropdown-item" data-toggle="modal" data-target="#delete_modal-{{ $persuratan->id }}">
+            <a class="dropdown-item" href="{{ route('persuratan.edit', $persuratan->id) }}"><i
+                    class="la la-edit"></i>Ubah</a>
+            <button type="button" class="dropdown-item" data-toggle="modal"
+                data-target="#delete_modal-{{ $persuratan->id }}">
                 <i class="la la-trash"></i>Hapus
             </button>
         </div>
     </span>
 
-    <a href="{{ route('persuratan.show', $persuratan->id) }}" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Detail">
+    <a href="{{ route('persuratan.show', $persuratan->id) }}" class="btn btn-sm btn-clean btn-icon btn-icon-md"
+        title="Detail">
         <i class="fa fa-search text-brand"></i>
     </a>
 
@@ -39,3 +43,9 @@
     </div>
 
 </form>
+@elseif (Auth::user() && Auth::user()->jabatan != '8')
+    <a href="{{ route('persuratan.show', $persuratan->id) }}" class="btn btn-sm btn-clean btn-icon btn-icon-md"
+        title="Detail">
+        <i class="fa fa-search text-brand"></i>
+    </a>
+@endif

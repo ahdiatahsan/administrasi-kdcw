@@ -1,3 +1,4 @@
+@if (Auth::user() && Auth::user()->jabatan == '12' || Auth::user()->jabatan == '13')
 <form action="{{ route('relasi.destroy', $relasi->id) }}" method="POST">
     @csrf
     @method('DELETE')
@@ -39,3 +40,8 @@
     </div>
 
 </form>
+@elseif (Auth::user() && Auth::user()->jabatan != '12' || Auth::user()->jabatan != '13')
+    <a href="{{ route('relasi.show', $relasi->id) }}" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Detail">
+        <i class="fa fa-search text-brand"></i>
+    </a>
+@endif

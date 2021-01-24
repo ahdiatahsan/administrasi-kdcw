@@ -80,9 +80,6 @@
 @section('js')
 <script>
     $(document).ready(function () {
-      var jabatan = "{{ Auth::user()->jabatan }}";
-      var showColumn = jabatan == 8 ? true:false;
-      
       $('.dataTable').DataTable({
         processing: true,
         serverSide: true,
@@ -96,10 +93,6 @@
           {
             className: 'text-center',
             targets: [0,1,2],
-          },
-          {
-            visible : showColumn,
-            targets: [2],
           },
         ],
         pagingType: "full_numbers"
