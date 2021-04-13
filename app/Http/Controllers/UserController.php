@@ -22,7 +22,7 @@ class UserController extends Controller
 
         $this->middleware('sekretaris')->except('index', 'show');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -92,7 +92,7 @@ class UserController extends Controller
 
         Storage::putFileAs('public/user', $photoFile, $photoName);
 
-        return redirect()->route('anggota.index')->with('success', 'Data anggota ' . $request['nama'] . ' ( '. $request['noreg'] .' )' . ' telah ditambah.');
+        return redirect()->route('anggota.index')->with('success', 'Data anggota ' . $request['nama'] . ' ( ' . $request['noreg'] . ' )' . ' telah ditambah.');
     }
 
     /**
@@ -179,16 +179,18 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-       $barangCount = $user->databarang()->count();
-       $keuanganCount = $user->keuangan()->count();
-       $pinjamCount = $user->peminjaman()->count();
-       $relasiCount = $user->relasi()->count();
-       $suratCount = $user->persuratan()->count();
+        $barangCount = $user->databarang()->count();
+        $keuanganCount = $user->keuangan()->count();
+        $pinjamCount = $user->peminjaman()->count();
+        $relasiCount = $user->relasi()->count();
+        $suratCount = $user->persuratan()->count();
 
         if ($barangCount || $keuanganCount || $pinjamCount || $relasiCount || $suratCount) {
-            return redirect()->route('anggota.index')->with('constraint_error', 
-                'Hapus terlebih dahulu semua data yang pernah dibuat oleh akun ' . $user->nama . ' ( '. $user->noreg .' )' 
-                . ' pada fitur lain seperti persuratan atau relasi, agar dapat menghapus akun.');
+            return redirect()->route('anggota.index')->with(
+                'constraint_error',
+                'Hapus terlebih dahulu semua data yang pernah dibuat oleh akun ' . $user->nama . ' ( ' . $user->noreg . ' )'
+                    . ' pada fitur lain seperti persuratan atau relasi, agar dapat menghapus akun.'
+            );
         }
 
         $user->delete();
@@ -196,7 +198,7 @@ class UserController extends Controller
         if (Storage::exists('public/user/' . $user->foto)) {
             Storage::delete('public/user/' . $user->foto);
         }
-        
-        return redirect()->route('anggota.index')->with('success', 'Data anggota ' . $user->nama . ' ( '. $user->noreg .' )' .' telah dihapus.');
+
+        return redirect()->route('anggota.index')->with('success', 'Data anggota ' . $user->nama . ' ( ' . $user->noreg . ' )' . ' telah dihapus.');
     }
 }
