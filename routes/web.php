@@ -23,9 +23,13 @@ Route::prefix('administrasi')->group(function () {
     Route::resource('jabatan', 'JabatanController'); //jabatan
     Route::resource('anggota', 'UserController', ['parameters' => ['anggota' => 'user']]); //anggota-users
     Route::resource('persuratan', 'PersuratanController'); //persuratan
+    Route::resource('agenda', 'AgendaController'); //agenda
+    Route::resource('presensi', 'PresensiController'); //presensi
     // API data administrasi dalam datatable --> tetap harus auth
     Route::get('table_surat_masuk', 'PersuratanController@surat_masuk')->name('surat_masuk');
     Route::get('table_surat_keluar', 'PersuratanController@surat_keluar')->name('surat_keluar');
+    Route::get('daftar_agenda', 'PresensiController@daftar_agenda')->name('daftar_agenda');
+    Route::get('log_presensi/{presensi}', 'PresensiController@log_presensi')->name('log_presensi');
 });
 
 //inventaris
