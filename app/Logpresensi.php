@@ -11,7 +11,7 @@ class Logpresensi extends Model
      *
      * @var array
      */
-     protected $fillable = [
+    protected $fillable = [
         'user', 'presensi'
     ];
 
