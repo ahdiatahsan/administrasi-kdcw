@@ -124,10 +124,27 @@
       var presensi = "{{ $presensi->id }}";
       var url = '{{ route("log_presensi", ":presensi") }}';
       url = url.replace(':presensi', presensi);
+
+      var namafile = "Presensi "+"{{ $agendas->nama }}"+" - "+"{{ $tanggal }}";
       
       $('.dataTable').DataTable({
         processing: true,
         serverSide: true,
+        dom: 'Bfrtip',
+        buttons: [
+            {extend: 'pageLength'},
+            {extend: 'excelHtml5',
+                filename: namafile,
+                title: null, 
+                exportOptions: { columns: [ 0, 1, 2] },
+                customize: function ( xlsx ){
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+ 
+                    // jQuery selector to add a border
+                    $('row c*', sheet).attr( 's', '25' );
+                }
+            },
+        ],
         ajax: url,
         columns: [
           {data: 'DT_RowIndex', name: 'DT_RowIndex'},
