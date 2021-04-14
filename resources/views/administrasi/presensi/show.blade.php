@@ -87,6 +87,20 @@
                         Tabel Log Presensi
                     </h3>
                 </div>
+                @if (Auth::user() && Auth::user()->jabatan == '8')
+                <div class="kt-portlet__head-toolbar">
+                    <div class="kt-portlet__head-wrapper">
+                        <div class="kt-portlet__head-actions">
+                            &nbsp;
+                            <a href="{{ route('logpresensi_tambah', $presensi->id) }}"
+                                class="btn btn-brand btn-elevate btn-icon-sm">
+                                <i class="la la-plus"></i>
+                                Tambah Data
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endif
             </div>
 
             <div class="kt-portlet__body">
