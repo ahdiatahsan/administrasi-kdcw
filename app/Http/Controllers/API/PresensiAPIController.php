@@ -25,7 +25,7 @@ class PresensiAPIController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'jabatan' => 8])) {
             $user = $user->find(Auth::user()->id);
 
-            return new User($user);
+            return $user;
         }
 
         return response()->json([
