@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+/* Presensi */
+
+Route::prefix('presensi')->group(function () {
+    Route::post('login', 'Api\PresensiAPIController@login');
+    Route::post('presensi', 'Api\PresensiAPIController@presensi_store');
+    Route::post('logpresensi', 'Api\PresensiAPIController@logpresensi_store');
+    Route::get('agendas', 'Api\PresensiAPIController@agenda_show');
+    Route::get('presensis', 'Api\PresensiAPIController@presensi_show');
+    Route::get('ceknoreg/{noreg}', 'Api\PresensiAPIController@check_noreg');
 });
