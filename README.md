@@ -1,4 +1,4 @@
-<p align="center"><img width="50px" src="https://github.com/ahdiatahsan/administrasi-kdcw/blob/master/public/img/readme/logo_kdcw.png"></p>
+<p align="center"><img width="300px" src="https://github.com/ahdiatahsan/administrasi-kdcw/blob/master/public/img/readme/logo_kdcw.png"></p>
 
 ## Tentang Aplikasi
 
