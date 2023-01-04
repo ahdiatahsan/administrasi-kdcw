@@ -1,4 +1,4 @@
-<p align="center"><img height="188" width="198" src="https://i.ibb.co/ss8Kw9b/logo-kdcw.png"></p>
+<p align="center"><img width="198" src="https://i.ibb.co/ss8Kw9b/logo-kdcw.png"></p>
 
 ## Tentang Aplikasi
 
